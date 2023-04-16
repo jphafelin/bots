@@ -1,0 +1,28 @@
+body {
+    background: rgb(163, 163, 163);
+
+}
+
+#btn-ingresar {
+    background: green;
+}
+
+#btn-eliminar {
+    background: red;
+}
+
+#btn-modificar {
+    background: yellow;
+}
+
+#btn-consultar {
+    background: rgb(25, 0, 255);
+}
+
+#btn-reporte {
+    background: violet;
+}
+
+#btn-volver {
+    background: orange;
+}
