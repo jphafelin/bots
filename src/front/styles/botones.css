@@ -1,0 +1,22 @@
+input {
+    background: #FFFF33;
+    height: 100%;
+}
+
+body {
+    background: rgb(163, 163, 163);
+
+}
+
+#btn-grabar {
+    background: rgb(0, 255, 0);
+}
+
+#ingresar {
+    background: green;
+
+}
+
+.banda {
+    background: rgb(159, 199, 243)
+}

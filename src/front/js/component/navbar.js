@@ -5,7 +5,7 @@ import "../../styles/navbar.css"
 
 export const Navbar = () => {
 	return (
-		<nav className="navbar navbar-light bg-light">
+		<nav className="navbar navbar-light bg-light p-0 m-0">
 			<div className="container-fluid row">
 				<div className="col-2">
 					<Link to="/">

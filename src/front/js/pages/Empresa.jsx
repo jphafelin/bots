@@ -23,7 +23,7 @@ export const Empresa = () => {
 
       <div className="col-3 text-center p-5 border border-3 border-dark bg-light">
         <div className="row justify-content-center mb-3">
-          <button id="btn-ingresar" className="col-10 justify border border-3 border-dark text-light">I N G R E S A R</button>
+          <button id="btn-ingresar" className="col-10 justify border border-3 border-dark text-light" onClick={CambioContrasena=> navigate("/ingresar_empresa")}>I N G R E S A R</button>
         </div>
         <div className="row justify-content-center mb-3">
           <button id="btn-eliminar" className="col-10 justify border border-3 border-dark text-light">E L I M I N A R</button>

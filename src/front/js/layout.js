@@ -12,6 +12,7 @@ import { MenuPrincipal } from "./pages/MenuPrincipal.jsx";
 import { Empresa } from "./pages/Empresa.jsx";
 import { Usuario } from "./pages/Usuario.jsx";
 import { Bots } from "./pages/Bots.jsx";
+import { IngresarEmpresa } from "./pages/IngresarEmpresa.jsx";
 
 
 import { Demo } from "./pages/demo";
@@ -43,6 +44,7 @@ const Layout = () => {
                         <Route element={<CambiarContrasena />} path="/cambiar_contrasena" />
                         <Route element={<MenuPrincipal />} path="/menu" />
                         <Route element={<Empresa />} path="/empresa" />
+                        <Route element={<IngresarEmpresa />} path="/ingresar_empresa" />
                         <Route element={<Usuario />} path="/usuario" />
                         <Route element={<Bots />} path="/bots" />
 
