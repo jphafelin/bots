@@ -12,6 +12,7 @@ export const IngresarEmpresa = () => {
   const navigate = useNavigate();
 
 
+
   return (
     <div className="containter justify-content-center">
 
@@ -25,42 +26,40 @@ export const IngresarEmpresa = () => {
       <div id="formulario" className="col-8 text-center py-1 border border-3 border-dark bg-light">
         <div className="row">
           <div className="text-start mx-3">
-            <label>ID:</label>
-            <input className="casilla-id col mx-2 bg-light rounded" value="1234" disabled="disabled"></input>
-            <label>RAZON SOCIAL:</label>
-            <input className=" casilla-razon-social col-6 mx-2 text-uppercase rounded"></input>
-          </div>
-
-        </div>
-        <div className="row my-2">
-          <div className="text-start mx-3">
-            <label>RUT:</label>
-            <input className="col-2 mx-2 text-uppercase rounded" value="99.999.999-A"></input>
-            <label>NOMBRE FANTASIA:</label>
-            <input className="col-6 mx-2 text-uppercase rounded" ></input>
-          </div>
-
-        </div>
-        <div className="row my-2">
-          <div className="text-start mx-3">
-            <label>GIRO:</label>
-            <input className="col-4 mx-2 text-uppercase rounded"></input>
-            <label>ESTADO:</label>
+            <label className="label-id">ID:</label>
+            <input className="casilla-id col bg-light rounded" value="1234" disabled="disabled"></input>
+            <label className="label-razon-social">RAZON SOCIAL:</label>
+            <input className=" casilla-razon-social col-6 text-uppercase rounded"></input>
+            <label className="label-rut">RUT:</label>
+            <input className="casilla-rut col-2 text-uppercase rounded"></input>
+            <label className="label-estado">ESTADO:</label>
             <select className="col bg-primary text-light rounded">
-              <option>NO VIGENTE</option>
               <option>VIGENTE</option>
+              <option>NO VIGENTE</option>
+
             </select>
           </div>
 
         </div>
-        <div className="p-1 border-top border-bottom border-dark border-3 justify-content-center banda">
+        <div className="row my-2">
+          <div className="text-start mx-3">
+            
+            <label>NOMBRE FANTASIA:</label>
+            <input className="casilla-nombre-fantasia col-6 text-uppercase rounded" ></input>
+            <label className="label-giro">GIRO:</label>
+            <input className="casilla-giro col-4 text-uppercase rounded"></input>
+          </div>
+
+        </div>
+       
+        <div className="border-top border-bottom border-dark border-3 justify-content-center banda">
           <b>DIRECCION FACTURACION</b>
         </div>
-        <div className="row y-2">
+        <div className="row my-1">
           <div className="text-start py-1 mx-3">
             <label>DIRECCION:</label>
-            <input className="col-4 mx-2 text-uppercase rounded"></input>
-            <label>REGION:</label>
+            <input className="casilla-direccion col-4 text-uppercase rounded"></input>
+            <label className="label-region">REGION:</label>
             <select className="col bg-primary text-light rounded">
               <option>01</option>
               <option>02</option>
@@ -79,55 +78,51 @@ export const IngresarEmpresa = () => {
               <option>15</option>
 
             </select>
+            <label className="label-comuna">COMUNA:</label>
+            <input className="casilla-comuna col-4 text-uppercase rounded"></input>
           </div>
         </div>
-        <div className="row y-2">
-          <div className="text-start py-1 mx-3">
-            <label>COMUNA:</label>
-            <input className="col-4 mx-2 text-uppercase rounded"></input>
+        
 
-          </div>
-        </div>
-
-        <div className="p-1 border-top border-bottom border-dark border-3 justify-content-center banda">
+        <div className="border-top border-bottom border-dark border-3 justify-content-center banda">
           <b>CONTACTO FACTURACION</b>
         </div>
         <div className="row my-2">
           <div className="text-start mx-3">
             <label>NOMBRE:</label>
-            <input className="col-4 mx-2 text-uppercase rounded"></input>
-            <label>TELEFONO:</label>
-            <input className="col-4 mx-2 text-uppercase rounded"></input>
+            <input className="casilla-nombre col-4 text-uppercase rounded"></input>
+            <label className="label-telefono">TELEFONO:</label>
+            <input className="casilla-telefono col-4 text-uppercase rounded"></input>
           </div>
 
         </div>
         <div className="row my-2">
           <div className="text-start mx-3">
             <label>EMAIL:</label>
-            <input className="col-4 mx-2 text-uppercase rounded"></input>
-            <label>CARGO:</label>
-            <input className="col-4 mx-2 text-uppercase rounded"></input>
+            <input className="casilla-email col-4 text-uppercase rounded"></input>
+            <label className="label-cargo">CARGO:</label>
+            <input className="casilla-cargo col-4 text-uppercase rounded"></input>
           </div>
 
         </div>
-        <div className="p-1 border-top border-bottom border-dark border-3 justify-content-center banda">
+        <div className="border-top border-bottom border-dark border-3 justify-content-center banda">
           <b>CONTACTO COBRANZA</b>
         </div>
         <div className="row my-2">
           <div className="text-start mx-3">
             <label>NOMBRE:</label>
-            <input className="col-4 mx-2 text-uppercase rounded"></input>
-            <label>TELEFONO:</label>
-            <input className="col-4 mx-2 text-uppercase rounded"></input>
+            <input className="casilla-nombre col-4 text-uppercase rounded"></input>
+            <label className="label-telefono">TELEFONO:</label>
+            <input className="casilla-telefono col-4 text-uppercase rounded"></input>
           </div>
 
         </div>
         <div className="row my-2">
           <div className="text-start mx-3">
             <label>EMAIL:</label>
-            <input className="col-4 mx-2 text-uppercase rounded"></input>
-            <label>CARGO:</label>
-            <input className="col-4 mx-2 text-uppercase rounded"></input>
+            <input className="casilla-email col-4 text-uppercase rounded"></input>
+            <label className="label-cargo">CARGO:</label>
+            <input className="casilla-cargo col-4 text-uppercase rounded"></input>
           </div>
 
         </div>
