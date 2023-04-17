@@ -13,55 +13,55 @@ export const IngresarEmpresa = () => {
 
 
   return (
-    <div className="containter row justify-content-center">
+    <div className="containter justify-content-center">
 
-      <div id="ingresar" className="justify-content-center text-light text-center border border-dark border-2 border-top-0">I N G R E S A R</div>
+      <div id="ingresar-titulo" className="justify-content-center text-light text-center border border-dark border-2 border-top-0">I N G R E S A R</div>
       <div>
 
-        <button id="btn-volver" className="col-1 m-1 justify border border-3 border-dark text-light" onClick={volver => navigate("/empresa")}>VOLVER</button>
+        <button id="btn-volver" className="btn col-1 m-1 justify border border-3 border-dark text-light" onClick={volver => navigate("/empresa")}>VOLVER</button>
 
       </div>
 
-      <div className="col-9 text-center py-1 border border-3 border-dark bg-light">
+      <div id="formulario" className="col-8 text-center py-1 border border-3 border-dark bg-light">
         <div className="row">
-          <div className="text-start">
+          <div className="text-start mx-3">
             <label>ID:</label>
-            <input className="col-1 mx-2 bg-light" value="1234" disabled="disabled"></input>
+            <input className="casilla-id col mx-2 bg-light rounded" value="1234" disabled="disabled"></input>
             <label>RAZON SOCIAL:</label>
-            <input className="col-6 mx-2 text-uppercase"></input>
+            <input className=" casilla-razon-social col-6 mx-2 text-uppercase rounded"></input>
           </div>
 
         </div>
         <div className="row my-2">
-          <div className="text-start">
+          <div className="text-start mx-3">
             <label>RUT:</label>
-            <input className="col-2 mx-2 text-uppercase" value="99.999.999-A"></input>
+            <input className="col-2 mx-2 text-uppercase rounded" value="99.999.999-A"></input>
             <label>NOMBRE FANTASIA:</label>
-            <input className="col-6 mx-2 text-uppercase" ></input>
+            <input className="col-6 mx-2 text-uppercase rounded" ></input>
           </div>
 
         </div>
         <div className="row my-2">
-          <div className="text-start">
+          <div className="text-start mx-3">
             <label>GIRO:</label>
-            <input className="col-4 mx-2 text-uppercase"></input>
+            <input className="col-4 mx-2 text-uppercase rounded"></input>
             <label>ESTADO:</label>
-            <select className="col bg-primary text-light">
+            <select className="col bg-primary text-light rounded">
               <option>NO VIGENTE</option>
               <option>VIGENTE</option>
             </select>
           </div>
 
         </div>
-        <div className="row p-1 border-top border-bottom border-dark border-3 justify-content-center banda">
+        <div className="p-1 border-top border-bottom border-dark border-3 justify-content-center banda">
           <b>DIRECCION FACTURACION</b>
         </div>
         <div className="row y-2">
-          <div className="text-start  py-1">
+          <div className="text-start py-1 mx-3">
             <label>DIRECCION:</label>
-            <input className="col-4 mx-2 text-uppercase"></input>
+            <input className="col-4 mx-2 text-uppercase rounded"></input>
             <label>REGION:</label>
-            <select className="col bg-primary text-light">
+            <select className="col bg-primary text-light rounded">
               <option>01</option>
               <option>02</option>
               <option>03</option>
@@ -82,52 +82,52 @@ export const IngresarEmpresa = () => {
           </div>
         </div>
         <div className="row y-2">
-          <div className="text-start  py-1">
+          <div className="text-start py-1 mx-3">
             <label>COMUNA:</label>
-            <input className="col-4 mx-2 text-uppercase"></input>
+            <input className="col-4 mx-2 text-uppercase rounded"></input>
 
           </div>
         </div>
 
-        <div className="row p-1 border-top border-bottom border-dark border-3 justify-content-center banda">
+        <div className="p-1 border-top border-bottom border-dark border-3 justify-content-center banda">
           <b>CONTACTO FACTURACION</b>
         </div>
         <div className="row my-2">
-          <div className="text-start">
+          <div className="text-start mx-3">
             <label>NOMBRE:</label>
-            <input className="col-4 mx-2 text-uppercase"></input>
+            <input className="col-4 mx-2 text-uppercase rounded"></input>
             <label>TELEFONO:</label>
-            <input className="col-4 mx-2 text-uppercase"></input>
+            <input className="col-4 mx-2 text-uppercase rounded"></input>
           </div>
 
         </div>
         <div className="row my-2">
-          <div className="text-start">
+          <div className="text-start mx-3">
             <label>EMAIL:</label>
-            <input className="col-4 mx-2 text-uppercase"></input>
+            <input className="col-4 mx-2 text-uppercase rounded"></input>
             <label>CARGO:</label>
-            <input className="col-4 mx-2 text-uppercase"></input>
+            <input className="col-4 mx-2 text-uppercase rounded"></input>
           </div>
 
         </div>
-        <div className="row p-1 border-top border-bottom border-dark border-3 justify-content-center banda">
+        <div className="p-1 border-top border-bottom border-dark border-3 justify-content-center banda">
           <b>CONTACTO COBRANZA</b>
         </div>
         <div className="row my-2">
-          <div className="text-start">
+          <div className="text-start mx-3">
             <label>NOMBRE:</label>
-            <input className="col-4 mx-2 text-uppercase"></input>
+            <input className="col-4 mx-2 text-uppercase rounded"></input>
             <label>TELEFONO:</label>
-            <input className="col-4 mx-2 text-uppercase"></input>
+            <input className="col-4 mx-2 text-uppercase rounded"></input>
           </div>
 
         </div>
         <div className="row my-2">
-          <div className="text-start">
+          <div className="text-start mx-3">
             <label>EMAIL:</label>
-            <input className="col-4 mx-2 text-uppercase"></input>
+            <input className="col-4 mx-2 text-uppercase rounded"></input>
             <label>CARGO:</label>
-            <input className="col-4 mx-2 text-uppercase"></input>
+            <input className="col-4 mx-2 text-uppercase rounded"></input>
           </div>
 
         </div>
@@ -138,13 +138,13 @@ export const IngresarEmpresa = () => {
       </div>
 
 
-      <div className="row justify-content-center m-3">
+      <div className="row justify-content-center m-1">
 
       </div>
-      <div className="col-9">
+      <div className="col-10">
       <div className="text-end">
 
-        <button id="btn-grabar" className="col-1 justify border border-3 border-dark" onClick={grabar => alert("Grabado")}><b>GRABAR</b></button>
+        <button id="btn-grabar" className="col-1 justify border border-3 border-dark btn" onClick={grabar => alert("Grabado")}><b>GRABAR</b></button>
 
       </div>
       </div>

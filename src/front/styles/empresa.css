@@ -1,6 +1,6 @@
 body {
     background: rgb(163, 163, 163);
-
+    font-family: monospace
 }
 
 #btn-ingresar {
@@ -24,5 +24,15 @@ body {
 }
 
 #btn-volver {
-    background: orange;
+    background: #FF8000
+}
+
+.casilla-id {
+    width: 43px;
+
+}
+
+.casilla-razon-social {
+    width: 410px;
+
 }

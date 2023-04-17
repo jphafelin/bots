@@ -16,10 +16,10 @@ export const Navbar = () => {
 					<h3>EMPRESA</h3>
 				</div>
 				<div className="col-2 text-end">
-					<p>X04-|1</p>
+					<p>X04-I1</p>
 					<div>
-					<button id="cerrar-sesion">CERRAR SESION</button>
-					<button id="ayuda"className="mx-2">?</button>
+					<button id="cerrar-sesion" className="text-light btn border border-3 border-dark">CERRAR SESION</button>
+					<button id="ayuda"className="mx-2 btn border border-3 border-dark">?</button>
 					</div>
 				</div>
 			</div>

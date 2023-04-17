@@ -34,3 +34,12 @@ body {
 .eleccion :hover {
     background: #0D6EFD;
 }
+
+#formulario {
+    margin: auto;
+}
+
+#ingresar-titulo {
+    background: green;
+    font-size: x-large;
+}
