@@ -1,10 +1,12 @@
+// Poner fixed-bottom a footer
+
 import React, { Component } from "react";
+import "../../styles/footer.css"
 
 export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center">
-		<p>
-			Made with <i className="fa fa-heart text-danger" /> by{" "}
-			<a href="http://www.4geeksacademy.com">4Geeks Academy</a>
-		</p>
+	<footer className="footer mt-auto d-flex border border-dark border-3">
+		<div className="col mx-5">USUARIO: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</div>
+		
+		<div className="col">DD-MM-AAAA HH:MM</div>
 	</footer>
 );

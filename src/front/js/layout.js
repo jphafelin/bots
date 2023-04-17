@@ -13,6 +13,12 @@ import { Empresa } from "./pages/Empresa.jsx";
 import { Usuario } from "./pages/Usuario.jsx";
 import { Bots } from "./pages/Bots.jsx";
 import { IngresarEmpresa } from "./pages/IngresarEmpresa.jsx";
+import { EliminarEmpresa } from "./pages/EliminarEmpresa.jsx";
+import { EliminarEmpresaId } from "./pages/EliminarEmpresaId.jsx";
+import { ModificarEmpresa } from "./pages/ModificarEmpresa.jsx";
+import { ModificarEmpresaId } from "./pages/ModificarEmpresaId.jsx";
+import { ConsultarEmpresa } from "./pages/ConsultarEmpresa.jsx";
+import { ConsultarEmpresaId } from "./pages/ConsultarEmpresaId.jsx";
 
 
 import { Demo } from "./pages/demo";
@@ -45,6 +51,12 @@ const Layout = () => {
                         <Route element={<MenuPrincipal />} path="/menu" />
                         <Route element={<Empresa />} path="/empresa" />
                         <Route element={<IngresarEmpresa />} path="/ingresar_empresa" />
+                        <Route element={<EliminarEmpresa />} path="/eliminar_empresa" />
+                        <Route element={<EliminarEmpresaId />} path="/eliminar_empresa/1" />
+                        <Route element={<ModificarEmpresa />} path="/modificar_empresa" />
+                        <Route element={<ModificarEmpresaId />} path="/modificar_empresa/1" />
+                        <Route element={<ConsultarEmpresa />} path="/consultar_empresa" />
+                        <Route element={<ConsultarEmpresaId />} path="/consultar_empresa/1" />
                         <Route element={<Usuario />} path="/usuario" />
                         <Route element={<Bots />} path="/bots" />
 
@@ -52,6 +64,7 @@ const Layout = () => {
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
+                    <Footer />
                    
                 </ScrollToTop>
             </BrowserRouter>

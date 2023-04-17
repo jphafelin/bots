@@ -23,19 +23,19 @@ export const Empresa = () => {
 
       <div className="col-3 text-center p-5 border border-3 border-dark bg-light">
         <div className="row justify-content-center mb-3">
-          <button id="btn-ingresar" className="col-10 justify border border-3 border-dark text-light" onClick={CambioContrasena=> navigate("/ingresar_empresa")}>I N G R E S A R</button>
+          <button id="btn-ingresar" className="col-10 justify border border-3 border-dark text-light" onClick={IngresarEmpresa=> navigate("/ingresar_empresa")}>I N G R E S A R</button>
         </div>
         <div className="row justify-content-center mb-3">
-          <button id="btn-eliminar" className="col-10 justify border border-3 border-dark text-light">E L I M I N A R</button>
+          <button id="btn-eliminar" className="col-10 justify border border-3 border-dark text-light" onClick={EliminarEmpresa=> navigate("/eliminar_empresa")}>E L I M I N A R</button>
         </div>
         <div className="row justify-content-center mb-3">
-          <button id="btn-modificar" className="col-10 justify border border-3 border-dark"><b>M O D I F I C A R</b></button>
+          <button id="btn-modificar" className="col-10 justify border border-3 border-dark" onClick={EliminarEmpresa=> navigate("/modificar_empresa")}><b>M O D I F I C A R</b></button>
         </div>
         <div className="row justify-content-center mb-3">
-          <button id="btn-consultar" className="col-10 justify border border-3 border-dark text-light">C O N S U L T A R</button>
+          <button id="btn-consultar" className="col-10 justify border border-3 border-dark text-light" onClick={EliminarEmpresa=> navigate("/consultar_empresa")}>C O N S U L T A R</button>
         </div>
         <div className="row justify-content-center">
-          <button id="btn-reporte" className="col-10 justify border border-3 border-dark"><b>R E P O R T E</b></button>
+          <button id="btn-reporte" className="col-10 justify border border-3 border-dark" onClick={EliminarEmpresa=> navigate("/reporte_empresa")}><b>R E P O R T E</b></button>
         </div>
         
 
