@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/botones.css"
 import { useNavigate } from "react-router-dom"
@@ -10,6 +10,8 @@ import Papa from 'papaparse';
 export const IngresarEmpresa = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
+ 
+  
 
   const [value, setValue] = useState("");
   const [value2, setValue2] = useState("");
@@ -25,6 +27,16 @@ export const IngresarEmpresa = () => {
   const [value12, setValue12] = useState("");
   const [value13, setValue13] = useState("");
   const [value14, setValue14] = useState("");
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const response = await fetch('/workspace/bots/src/front/js/pages/tx_emp.csv');
+    const data = await response.text();
+    console.log(data);
+  }
 
   function handleChange(event) {
     if (event.target.value.indexOf(";") !== -1) {
