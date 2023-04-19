@@ -10,7 +10,7 @@ import Papa from 'papaparse';
 
 
 
-export const EliminarEmpresa = () => {
+export const PaginaNueva = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
 
