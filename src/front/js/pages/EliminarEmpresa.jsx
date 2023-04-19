@@ -10,7 +10,7 @@ import Papa from 'papaparse';
 
 
 
-export const PaginaNuevaa = () => {
+export const EliminarEmpresa = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
   const myArray = store.tipo_evento;
