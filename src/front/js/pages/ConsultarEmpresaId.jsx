@@ -18,7 +18,7 @@ export const ConsultarEmpresaId = () => {
 <div  className="row justify-content-center text-light border border-dark border-2 border-top-0 bg-primary">C O N S U L T A R</div>
       <div>
 
-        <button id="btn-volver" className="col-1 m-4 justify border border-3 border-dark text-light" onClick={volver => navigate("/eliminar_empresa")}>VOLVER</button>
+        <button id="btn-volver" className="col-1 m-4 justify border border-3 border-dark text-light" onClick={volver => navigate("/consultar_empresa")}>VOLVER</button>
 
       </div>
 

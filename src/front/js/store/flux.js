@@ -2,18 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			tipo_evento: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -33,6 +22,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error loading message from backend", error)
 				}
 			},
+			getTipo_de_Eventos: async () => {
+                const store = getStore();
+                const host = process.env.BACKEND_URL;
+                const url = "https://3001-jphafelin-bots-2kgpdywtcx8.ws-eu94.gitpod.io/api/empresa";
+                const requestOptions = {
+                    method: "GET",
+                    ContentType: "application/json",
+                }
+                const response = await fetch(url, requestOptions);
+                console.log(response)
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(" Data Empresa: ", data.results);
+                    setStore({
+                        tipo_evento: data.results,
+                    });
+                }
+            },
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

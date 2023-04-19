@@ -2,6 +2,9 @@ import React, { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/botones.css"
 import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom";
+import logo from "../../img/LogoNewOffice.jpeg";
+import "../../styles/navbar.css"
 import rigoImageUrl from "../../img/Logo.jpg";
 import Papa from 'papaparse';
 
@@ -28,15 +31,9 @@ export const IngresarEmpresa = () => {
   const [value13, setValue13] = useState("");
   const [value14, setValue14] = useState("");
 
-  useEffect(() => {
-    fetchData();
-  }, []);
 
-  const fetchData = async () => {
-    const response = await fetch('/workspace/bots/src/front/js/pages/tx_emp.csv');
-    const data = await response.text();
-    console.log(data);
-  }
+
+
 
   function handleChange(event) {
     if (event.target.value.indexOf(";") !== -1) {
@@ -155,11 +152,81 @@ export const IngresarEmpresa = () => {
       event.preventDefault();
     }
   }
+  const grabar = () =>{
+    var myHeaders = new Headers();
+     myHeaders.append("Content-Type", "application/json");
+
+     var raw = JSON.stringify({
+     
+     "razon_social": value,
+     "rut": value2,
+     "estado": "VIGENTE",
+     "nombre_fantasia": value3,
+     "giro": value4,
+     "direccion_facturacion": value5,
+     "region": "02",
+     "comuna": value6,
+     "nombre_contacto_facturacion": value7,
+     "telefono_contacto_facturacion": value8,
+     "email_contacto_facturacion": value9,
+     "cargo_contacto_facturacion": value10,
+     "nombre_contacto_cobranza": value11,
+     "telefono_contacto_cobranza": value12,
+     "email_contacto_cobranza": value13,
+     "cargo_contacto_cobranza": value14,
+     
+
+     });
+
+     var requestOptions = {
+       method: 'POST',
+       headers: myHeaders,
+       body: raw,
+       redirect: 'follow'
+     };
+
+     fetch("https://3001-jphafelin-bots-2kgpdywtcx8.ws-eu94.gitpod.io/api/empresa", requestOptions)
+       .then(response => response.text())
+       .then(result => console.log(result))
+       .catch(error => console.log('error', error));
+
+       alert("Empresa Creada")
+       navigate("/empresa")
+
+     
+     
+     
+     //return (
+     //    <div class="alert alert-primary" role="alert">
+     //        A simple primary alert—check it out!
+     //    </div>)
+ }
 
 
 
   return (
     <div className="containter justify-content-center">
+      <nav className="navbar p-1">
+			<div className="container-fluid row">
+				<div className="col-2">
+					<Link to="/menu">
+						<img src={logo} height="60px"></img>
+					</Link>
+				</div>
+				<div className="col-8 text-center justify-content-start ">
+					<h3>INGRESAR EMPRESA</h3>
+				</div>
+				<div className="col-2 text-end">
+					<p>X04-I1</p>
+					<div>
+					<button id="cerrar-sesion" className="text-light btn border border-3 border-dark">CERRAR SESION</button>
+					<button id="ayuda"className="mx-2 btn border border-3 border-dark">?</button>
+					</div>
+				</div>
+			</div>
+
+
+		</nav>
 
       <div id="ingresar-titulo" className="justify-content-center text-light text-center border border-dark border-2 border-top-0">I N G R E S A R</div>
       <div>
@@ -312,7 +379,7 @@ export const IngresarEmpresa = () => {
       <div className="col-10">
       <div className="text-end">
 
-        <button id="btn-grabar" className="col-1 justify border border-3 border-dark btn" onClick={grabar => alert("Grabado")}><b>GRABAR</b></button>
+        <button id="btn-grabar" className="col-1 justify border border-3 border-dark btn" onClick={grabar}><b>GRABAR</b></button>
 
       </div>
       </div>

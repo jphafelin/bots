@@ -10,7 +10,7 @@ import Papa from 'papaparse';
 export const ConsultarEmpresa = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-
+  const myArray = store.tipo_evento;
 
   return (
     <div className="containter row justify-content-center dv-100">
@@ -45,21 +45,21 @@ export const ConsultarEmpresa = () => {
 
 
         <div className="eleccion">
+        {myArray.length === 0 ? (
+                        <h1><span className="spam_no">No element in Array</span></h1>
+                    ) :(
+                      myArray.map((item, key=item.id) => (
 
         <div className="row" onClick={EliminarEmpresaActual => navigate("/consultar_empresa/1")}>
-         <div className="col-2 border border-dark"><b>99.999.999-A</b></div>
-         <div className="col-8 border border-dark text-start"><b>MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM</b></div>
-         <div className="col-2 border border-dark"><b>NO VIGENTE</b></div>
+         <div className="col-2 border border-dark"><b>{item.rut}</b></div>
+         <div className="col-8 border border-dark text-start"><b>{item.razon_social}</b></div>
+         <div className="col-2 border border-dark"><b>{item.estado}</b></div>
         </div>
 
-        
 
-        <div className="row" onClick={EliminarEmpresaActual => navigate("/consultar_empresa/1")}>
-         <div className="col-2 border border-dark"><b>99.999.999-A</b></div>
-         <div className="col-8 border border-dark text-start"><b>MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM</b></div>
-         <div className="col-2 border border-dark"><b>NO VIGENTE</b></div>
-        </div>
 
+        ))
+        )}
         </div>
       </div>
 
