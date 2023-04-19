@@ -184,8 +184,8 @@ export const IngresarEmpresa = () => {
        body: raw,
        redirect: 'follow'
      };
-
-     fetch("https://3001-jphafelin-bots-2kgpdywtcx8.ws-eu94.gitpod.io/api/empresa", requestOptions)
+     const host = process.env.BACKEND_URL;
+     fetch(host +"/api/empresa", requestOptions)
        .then(response => response.text())
        .then(result => console.log(result))
        .catch(error => console.log('error', error));
