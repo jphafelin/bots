@@ -7,6 +7,7 @@ import logo from "../../img/LogoNewOffice.jpeg";
 import "../../styles/navbar.css"
 import rigoImageUrl from "../../img/Logo.jpg";
 import Papa from 'papaparse';
+import { relativeTimeRounding } from "moment";
 
 
 
@@ -30,10 +31,18 @@ export const IngresarEmpresa = () => {
   const [value12, setValue12] = useState("");
   const [value13, setValue13] = useState("");
   const [value14, setValue14] = useState("");
+  const [selectedOption, setSelectedOption] = useState("VIGENTE");
+  const [selectedOption2, setSelectedOption2] = useState("01");
 
 
 
+  function handleSelect(event) {
+    setSelectedOption(event.target.value);
+  }
 
+  function handleSelect2(event) {
+    setSelectedOption2(event.target.value);
+  }
 
   function handleChange(event) {
     if (event.target.value.indexOf(";") !== -1) {
@@ -158,22 +167,22 @@ export const IngresarEmpresa = () => {
 
      var raw = JSON.stringify({
      
-     "razon_social": value,
-     "rut": value2,
-     "estado": "VIGENTE",
-     "nombre_fantasia": value3,
-     "giro": value4,
-     "direccion_facturacion": value5,
-     "region": "02",
-     "comuna": value6,
-     "nombre_contacto_facturacion": value7,
-     "telefono_contacto_facturacion": value8,
-     "email_contacto_facturacion": value9,
-     "cargo_contacto_facturacion": value10,
-     "nombre_contacto_cobranza": value11,
-     "telefono_contacto_cobranza": value12,
-     "email_contacto_cobranza": value13,
-     "cargo_contacto_cobranza": value14,
+     "razon_social": value.toUpperCase(),
+     "rut": value2.toUpperCase(),
+     "estado": selectedOption,
+     "nombre_fantasia": value3.toUpperCase(),
+     "giro": value4.toUpperCase(),
+     "direccion_facturacion": value5.toUpperCase(),
+     "region": selectedOption2,
+     "comuna": value6.toUpperCase(),
+     "nombre_contacto_facturacion": value7.toUpperCase(),
+     "telefono_contacto_facturacion": value8.toUpperCase(),
+     "email_contacto_facturacion": value9.toUpperCase(),
+     "cargo_contacto_facturacion": value10.toUpperCase(),
+     "nombre_contacto_cobranza": value11.toUpperCase(),
+     "telefono_contacto_cobranza": value12.toUpperCase(),
+     "email_contacto_cobranza": value13.toUpperCase(),
+     "cargo_contacto_cobranza": value14.toUpperCase(),
      
 
      });
@@ -185,13 +194,16 @@ export const IngresarEmpresa = () => {
        redirect: 'follow'
      };
      const host = process.env.BACKEND_URL;
-     fetch(host +"/api/empresa", requestOptions)
+     fetch("https://3001-jphafelin-bots-8rp7kma2fy4.ws-eu94.gitpod.io/api/empresa", requestOptions)
        .then(response => response.text())
        .then(result => console.log(result))
        .catch(error => console.log('error', error));
 
        alert("Empresa Creada")
        navigate("/empresa")
+       
+       location.reload();
+      
 
      
      
@@ -239,7 +251,7 @@ export const IngresarEmpresa = () => {
         <div className="row">
           <div className="text-start mx-3">
             <label className="label-id">ID:</label>
-            <input className="casilla-id col bg-light rounded" maxlength="4" value="1234" disabled="disabled"></input>
+            <input className="casilla-id col bg-light rounded" maxlength="4" value="" disabled="disabled"></input>
             <label className="label-razon-social">RAZON SOCIAL:</label>
             <input className=" casilla-razon-social col-6 text-uppercase rounded" maxlength="45" value={value}
       onChange={handleChange}
@@ -249,7 +261,7 @@ export const IngresarEmpresa = () => {
       onChange={handleChange2}
       onKeyPress={handleKeyPress}></input>
             <label className="label-estado">ESTADO:</label>
-            <select className="col bg-primary text-light rounded">
+            <select className="col bg-primary text-light rounded" onChange={handleSelect}>
               <option>VIGENTE</option>
               <option>NO VIGENTE</option>
 
@@ -282,7 +294,7 @@ export const IngresarEmpresa = () => {
       onChange={handleChange5}
       onKeyPress={handleKeyPress}></input>
             <label className="label-region">REGION:</label>
-            <select className="col bg-primary text-light rounded">
+            <select className="col bg-primary text-light rounded" onChange={handleSelect2}>
               <option>01</option>
               <option>02</option>
               <option>03</option>

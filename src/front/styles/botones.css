@@ -43,3 +43,8 @@ body {
     background: green;
     font-size: x-large;
 }
+
+#eliminar-titulo {
+    background: red;
+    font-size: x-large;
+}

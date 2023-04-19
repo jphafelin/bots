@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/empresa.css"
 import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom";
+import logo from "../../img/LogoNewOffice.jpeg";
+import "../../styles/navbar.css"
 import rigoImageUrl from "../../img/Logo.jpg";
 import Papa from 'papaparse';
 
@@ -13,7 +16,28 @@ export const Empresa = () => {
 
 
   return (
-    <div className="row containter justify-content-center">
+    <div className="containter justify-content-center">
+      <nav className="navbar p-1">
+        <div className="container-fluid row">
+          <div className="col-2">
+            <Link to="/menu">
+              <img src={logo} height="60px"></img>
+            </Link>
+          </div>
+          <div className="col-8 text-center justify-content-start ">
+            <h3>EMPRESA</h3>
+          </div>
+          <div className="col-2 text-end">
+            <p>X04-I1</p>
+            <div>
+              <button id="cerrar-sesion" className="text-light btn border border-3 border-dark">CERRAR SESION</button>
+              <button id="ayuda" className="mx-2 btn border border-3 border-dark">?</button>
+            </div>
+          </div>
+        </div>
+
+
+      </nav>
      
       <div>
         
@@ -21,7 +45,7 @@ export const Empresa = () => {
         
       </div>
 
-      <div className="col-3 text-center p-5 border border-3 border-dark bg-light">
+      <div id="formulario" className="col-3 text-center p-5 border border-3 border-dark bg-light">
         <div className="row justify-content-center mb-3">
           <button id="btn-ingresar" className="col-10 justify border border-3 border-dark text-light" onClick={IngresarEmpresa=> navigate("/ingresar_empresa")}>I N G R E S A R</button>
         </div>

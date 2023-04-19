@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getTipo_de_Eventos: async () => {
                 const store = getStore();
                 const host = process.env.BACKEND_URL;
-                const url = host +"/api/empresa";
+                const url = "https://3001-jphafelin-bots-8rp7kma2fy4.ws-eu94.gitpod.io/api/empresa";
                 const requestOptions = {
                     method: "GET",
                     ContentType: "application/json",
