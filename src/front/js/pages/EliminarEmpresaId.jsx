@@ -14,8 +14,11 @@ import { relativeTimeRounding } from "moment";
 export const EliminarEmpresaId = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-
-
+  const id_empresa = localStorage.getItem("id")
+  
+  const myArray = store.tipo_evento;
+  console.log("ESPUESTA", myArray[id_empresa])
+  
 
 
 
@@ -69,7 +72,7 @@ export const EliminarEmpresaId = () => {
         <button id="btn-volver" className="btn col-1 m-1 justify border border-3 border-dark text-light" onClick={volver => navigate("/empresa")}>VOLVER</button>
 
       </div>
-
+      
       <div id="formulario" className="col-8 text-center py-1 border border-3 border-dark bg-light">
         <div className="row">
           <div className="text-start mx-3">

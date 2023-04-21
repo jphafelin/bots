@@ -14,6 +14,14 @@ export const EliminarEmpresa = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
   const myArray = store.tipo_evento;
+  function editAdmin(key, user) {
+    console.log(key)
+    
+    localStorage.setItem("id_empresa", key)
+    
+
+    return navigate("/eliminar_empresa/1");
+}
 
   return (
     <div className="containter justify-content-center">
@@ -71,7 +79,7 @@ export const EliminarEmpresa = () => {
           ) : (
             myArray.map((item, key = item.id) => (
 
-              <div className="d-flex" onClick={EliminarEmpresaActual => navigate("/eliminar_empresa/1")}>
+              <div className="d-flex" onClick={()=>editAdmin(item.id, item.id_user)}>
                 <div className="col-2 border border-dark"><b>{item.rut}</b></div>
                 <div className="col-8 border border-dark text-start"><b className="mx-2">{item.razon_social}</b></div>
                 <div className="col-2 border border-dark"><b>{item.estado}</b></div>
