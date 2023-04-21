@@ -18,13 +18,7 @@ export const EliminarEmpresaId = () => {
   const id_empresa = localStorage.getItem("id_empresa")
   
   const myArray = store.evento;
-
-
-
-
-  //for (let i = 0; i < 1; i++) {
-   // location.reload();
-  //}
+  
  
 
   const grabar = () => {
@@ -43,13 +37,13 @@ export const EliminarEmpresaId = () => {
       redirect: 'follow'
     };
 
-    fetch("https://3001-jphafelin-bots-twaox590bku.ws-eu95.gitpod.io/api/empresa/"+ id_empresa, requestOptions)
+    fetch("https://3001-jphafelin-bots-4vnpaal1fna.ws-eu95.gitpod.io/api/empresa/"+ id_empresa, requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
     alert("Empresa " + id_empresa + " Eliminada")
     navigate("/empresa")
-
+    
     location.reload();
 
   }

@@ -40,9 +40,9 @@ export const Empresa = () => {
       </nav>
      
       <div>
-        
-        <button id="btn-volver" className="col-1 m-4 justify border border-3 border-dark text-light" onClick={volver=> navigate("/menu")}>VOLVER</button>
-        
+
+        <button id="btn-volver" className="btn col-1 m-1 justify border border-3 border-dark text-light" onClick={volver => navigate("/menu")}>VOLVER</button>
+
       </div>
 
       <div id="formulario" className="col-3 text-center p-5 border border-3 border-dark bg-light">

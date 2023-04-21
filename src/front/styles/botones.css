@@ -48,3 +48,13 @@ body {
     background: red;
     font-size: x-large;
 }
+
+#modificar-titulo {
+    background: yellow;
+    font-size: x-large;
+}
+
+#consultar-titulo {
+    background: #1900FF;
+    font-size: x-large;
+}
