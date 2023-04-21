@@ -88,3 +88,19 @@ def get_user(user_id):
         return jsonify(response_body), 200  
     else:
         return jsonify({'message': 'User not found or not active'}), 404
+
+
+@api.route('/empresa/<int:client_id>', methods=['PUT'])
+def update_empresa(client_id):
+    client = Empresa.query.get(client_id)
+    if client is None:
+        return 'Not found', 404
+    
+    client.estado = request.json.get('estado', client.estado)
+    
+    db.session.commit()
+
+    response_body = {'estado': client.estado,
+                     }
+
+    return jsonify(response_body), 200

@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom";
 import logo from "../../img/LogoNewOffice.jpeg";
 import "../../styles/navbar.css"
-import rigoImageUrl from "../../img/Logo.jpg";
-import Papa from 'papaparse';
+
 
 
 
@@ -25,6 +24,7 @@ export const EliminarEmpresa = () => {
     console.log(key)
     
     localStorage.setItem("id_empresa", key)
+    
     
 
     return navigate("/eliminar_empresa/1");

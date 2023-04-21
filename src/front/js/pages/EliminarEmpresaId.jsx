@@ -12,37 +12,53 @@ import { relativeTimeRounding } from "moment";
 
 
 export const EliminarEmpresaId = () => {
+  
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
   const id_empresa = localStorage.getItem("id_empresa")
+  
   const myArray = store.evento;
-  
-  
 
+
+
+
+  //for (let i = 0; i < 1; i++) {
+   // location.reload();
+  //}
+ 
 
   const grabar = () => {
 
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-    alert("Empresa "+id_empresa+" Eliminada")
+    var raw = JSON.stringify({
+      "estado": "NO VIGENTE"
+    });
+
+    var requestOptions = {
+      method: 'PUT',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("https://3001-jphafelin-bots-twaox590bku.ws-eu95.gitpod.io/api/empresa/"+ id_empresa, requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+    alert("Empresa " + id_empresa + " Eliminada")
     navigate("/empresa")
 
     location.reload();
 
-
-
-
-
-    //return (
-    //    <div class="alert alert-primary" role="alert">
-    //        A simple primary alert—check it out!
-    //    </div>)
   }
 
 
 
   return (
     <div className="containter justify-content-center">
-      
+
       <nav className="navbar p-1">
         <div className="container-fluid row">
           <div className="col-2">
@@ -71,22 +87,22 @@ export const EliminarEmpresaId = () => {
         <button id="btn-volver" className="btn col-1 m-1 justify border border-3 border-dark text-light" onClick={volver => navigate("/eliminar_empresa")}>VOLVER</button>
 
       </div>
-      
+
       <div id="formulario" className="col-8 text-center py-1 border border-3 border-dark bg-light">
         <div className="row">
           <div className="text-start mx-3">
             <label className="label-id">ID:</label>
-            <input className="casilla-id col bg-light rounded" maxLength="4" value="" disabled="disabled"></input>
+            <input className="casilla-id col bg-light rounded" maxLength="4" value={myArray.id} disabled="disabled"></input>
             <label className="label-razon-social">RAZON SOCIAL:</label>
-            <input className=" casilla-razon-social col-6 text-uppercase rounded bg-light" maxLength="45" value="V" disabled="disabled"
+            <input className=" casilla-razon-social col-6 text-uppercase rounded bg-light" maxLength="45" value={myArray.razon_social} disabled="disabled"
             ></input>
             <label className="label-rut">RUT:</label>
-            <input className="casilla-rut col-2 text-uppercase rounded bg-light" maxLength="12" value="V" disabled="disabled"
+            <input className="casilla-rut col-2 text-uppercase rounded bg-light" maxLength="12" value={myArray.rut} disabled="disabled"
 
             ></input>
             <label className="label-estado">ESTADO:</label>
-            <input className="casilla-rut col-2 text-uppercase rounded bg-light" value="V" disabled="disabled">
-              
+            <input className="casilla-rut col-2 text-uppercase rounded bg-light" value={myArray.estado} disabled="disabled">
+
 
             </input>
           </div>
@@ -96,10 +112,10 @@ export const EliminarEmpresaId = () => {
           <div className="text-start mx-3">
 
             <label>NOMBRE FANTASIA:</label>
-            <input className="casilla-nombre-fantasia col-6 text-uppercase rounded bg-light" maxLength="40" value="V" disabled="disabled"
+            <input className="casilla-nombre-fantasia col-6 text-uppercase rounded bg-light" maxLength="40" value={myArray.nombre_fantasia} disabled="disabled"
             ></input>
             <label className="label-giro">GIRO:</label>
-            <input className="casilla-giro col-4 text-uppercase rounded bg-light" maxLength="40" value="V" disabled="disabled"
+            <input className="casilla-giro col-4 text-uppercase rounded bg-light" maxLength="40" value={myArray.giro} disabled="disabled"
             ></input>
           </div>
 
@@ -111,12 +127,12 @@ export const EliminarEmpresaId = () => {
         <div className="row my-1">
           <div className="text-start py-1 mx-3">
             <label>DIRECCION:</label>
-            <input className="casilla-direccion col-4 text-uppercase rounded bg-light" maxLength="40" value="V" disabled="disabled"
+            <input className="casilla-direccion col-4 text-uppercase rounded bg-light" maxLength="40" value={myArray.direccion_facturacion} disabled="disabled"
             ></input>
             <label className="label-region">REGION:</label>
-            <input className="casilla-id col bg-light rounded" maxLength="4" value="V" disabled="disabled"></input>
+            <input className="casilla-id col bg-light rounded" maxLength="4" value={myArray.region} disabled="disabled"></input>
             <label className="label-comuna">COMUNA:</label>
-            <input className="casilla-comuna col-4 text-uppercase rounded bg-light" maxLength="20" value="V" disabled="disabled"
+            <input className="casilla-comuna col-4 text-uppercase rounded bg-light" maxLength="20" value={myArray.comuna} disabled="disabled"
             ></input>
           </div>
         </div>
@@ -128,10 +144,10 @@ export const EliminarEmpresaId = () => {
         <div className="row my-2">
           <div className="text-start mx-3">
             <label>NOMBRE:</label>
-            <input className="casilla-nombre col-4 text-uppercase rounded bg-light" maxLength="35" value="V" disabled="disabled"
+            <input className="casilla-nombre col-4 text-uppercase rounded bg-light" maxLength="35" value={myArray.nombre_contacto_facturacion} disabled="disabled"
             ></input>
             <label className="label-telefono">TELEFONO:</label>
-            <input className="casilla-telefono col-4 text-uppercase rounded bg-light" maxLength="25" value="V" disabled="disabled"
+            <input className="casilla-telefono col-4 text-uppercase rounded bg-light" maxLength="25" value={myArray.telefono_contacto_facturacion} disabled="disabled"
             ></input>
           </div>
 
@@ -139,10 +155,10 @@ export const EliminarEmpresaId = () => {
         <div className="row my-2">
           <div className="text-start mx-3">
             <label>EMAIL:</label>
-            <input className="casilla-email col-4 text-uppercase rounded bg-light" maxLength="42" value="V" disabled="disabled"
+            <input className="casilla-email col-4 text-uppercase rounded bg-light" maxLength="42" value={myArray.email_contacto_facturacion} disabled="disabled"
             ></input>
             <label className="label-cargo">CARGO:</label>
-            <input className="casilla-cargo col-4 text-uppercase rounded bg-light" maxLength="23" value="V" disabled="disabled"
+            <input className="casilla-cargo col-4 text-uppercase rounded bg-light" maxLength="23" value={myArray.cargo_contacto_facturacion} disabled="disabled"
             ></input>
           </div>
 
@@ -153,10 +169,10 @@ export const EliminarEmpresaId = () => {
         <div className="row my-2">
           <div className="text-start mx-3">
             <label>NOMBRE:</label>
-            <input className="casilla-nombre col-4 text-uppercase rounded bg-light" maxLength="35" value="V" disabled="disabled"
+            <input className="casilla-nombre col-4 text-uppercase rounded bg-light" maxLength="35" value={myArray.nombre_contacto_cobranza} disabled="disabled"
             ></input>
             <label className="label-telefono">TELEFONO:</label>
-            <input className="casilla-telefono col-4 text-uppercase rounded bg-light" maxLength="25" value="V" disabled="disabled"
+            <input className="casilla-telefono col-4 text-uppercase rounded bg-light" maxLength="25" value={myArray.telefono_contacto_cobranza} disabled="disabled"
             ></input>
           </div>
 
@@ -164,10 +180,10 @@ export const EliminarEmpresaId = () => {
         <div className="row my-2">
           <div className="text-start mx-3">
             <label>EMAIL:</label>
-            <input className="casilla-email col-4 text-uppercase rounded bg-light" maxLength="42" value="V" disabled="disabled"
+            <input className="casilla-email col-4 text-uppercase rounded bg-light" maxLength="42" value={myArray.email_contacto_cobranza} disabled="disabled"
             ></input>
             <label className="label-cargo">CARGO:</label>
-            <input className="casilla-cargo col-4 text-uppercase rounded bg-light" maxLength="23" value="V" disabled="disabled"
+            <input className="casilla-cargo col-4 text-uppercase rounded bg-light" maxLength="23" value={myArray.cargo_contacto_cobranza} disabled="disabled"
             ></input>
           </div>
 

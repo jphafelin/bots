@@ -46,25 +46,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getEvento: async () => {
                 const store = getStore();
                 const host = process.env.BACKEND_URL;
-				const id_empresa = localStorage.getItem("id_empresa") 
-				//if (id_empresa != "") {
-                const url = "https://3001-jphafelin-bots-twaox590bku.ws-eu95.gitpod.io/api/empresa/2";
+                const url = "https://3001-jphafelin-bots-twaox590bku.ws-eu95.gitpod.io/api/empresa/"+ localStorage.getItem("id_empresa");
                 const requestOptions = {
                     method: "GET",
                     ContentType: "application/json",
                 }
+				
                 const response = await fetch(url, requestOptions);
                 console.log(response)
                 if (response.ok) {
                     const data = await response.json();
-                    console.log(" Datos Empresa Actual: ", data.results);
+                    console.log(" Datos Empresa Actual: ", data.result);
                     setStore({
-                        evento: data.results,
+                        evento: data.result,
                     });
+					
                 }
-            }//}
-			,
-			
+            },
+		//}
+		
 			
 			changeColor: (index, color) => {
 				//get the store
