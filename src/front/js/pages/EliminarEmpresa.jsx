@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/botones.css"
 import { useNavigate } from "react-router-dom"
@@ -14,6 +14,13 @@ export const EliminarEmpresa = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
   const myArray = store.tipo_evento;
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm2, setSearchTerm2] = useState('');
+  const [searchTerm3, setSearchTerm3] = useState('');
+
+
+
   function editAdmin(key, user) {
     console.log(key)
     
@@ -67,9 +74,10 @@ export const EliminarEmpresa = () => {
 
 
         <div className="d-flex">
-          <input className="col-2 text-center"></input>
-          <input className="col-8"></input>
-          <input className="col-2 text-center"></input>
+          
+        <input className="col-2" type="text" value={searchTerm.toUpperCase()} onChange={e => setSearchTerm(e.target.value)} />
+        <input className="col-8" type="text" value={searchTerm2.toUpperCase()} onChange={e => setSearchTerm2(e.target.value)} />
+        <input className="col-2" type="text" value={searchTerm3.toUpperCase()} onChange={e => setSearchTerm3(e.target.value)} />
         </div>
 
 
@@ -77,17 +85,20 @@ export const EliminarEmpresa = () => {
           {myArray.length === 0 ? (
             <h1><span className="spam_no">No element in Array</span></h1>
           ) : (
-            myArray.map((item, key = item.id) => (
-
-              <div key={key} className="d-flex" onClick={()=>editAdmin(item.id, item.id_user)}>
-                <div className="col-2 border border-dark"><b>{item.rut}</b></div>
-                <div className="col-8 border border-dark text-start"><b className="mx-2">{item.razon_social}</b></div>
-                <div className="col-2 border border-dark"><b>{item.estado}</b></div>
-              </div>
-
-
-
-            ))
+            myArray
+  .filter(item => {
+    const searchRegex = new RegExp(searchTerm, 'i');
+    const searchRegex2 = new RegExp(searchTerm2, 'i');
+    const searchRegex3 = new RegExp(searchTerm3, 'i');
+    return searchRegex.test(item.rut) && searchRegex2.test(item.razon_social) && searchRegex3.test(item.estado);
+  })
+  .map((item, key = item.id) => (
+    <div key={key} className="d-flex" onClick={()=>editAdmin(item.id)}>
+      <div className="col-2 border border-dark"><b>{item.rut}</b></div>
+      <div className="col-8 border border-dark text-start"><b className="mx-2">{item.razon_social}</b></div>
+      <div className="col-2 border border-dark"><b>{item.estado}</b></div>
+    </div>
+  ))
           )}
         </div>
       </div>

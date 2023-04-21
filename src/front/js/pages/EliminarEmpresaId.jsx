@@ -15,26 +15,15 @@ export const EliminarEmpresaId = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
   const id_empresa = localStorage.getItem("id_empresa")
+  const myArray = store.evento;
   
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('https://3001-jphafelin-bots-mco146slbdg.ws-eu94.gitpod.io/api/empresa/1');
-      const jsonData = await response.json();
-      setData(jsonData);
-    };
-
-    fetchData();
-  }, []);
   
 
-console.log(data)
 
   const grabar = () => {
 
 
-    alert("Empresa Eliminada")
+    alert("Empresa "+id_empresa+" Eliminada")
     navigate("/empresa")
 
     location.reload();
@@ -79,7 +68,7 @@ console.log(data)
       <div id="eliminar-titulo" className="justify-content-center text-light text-center border border-dark border-2 border-top-0">E L I M I N A R</div>
       <div>
 
-        <button id="btn-volver" className="btn col-1 m-1 justify border border-3 border-dark text-light" onClick={volver => navigate("/empresa")}>VOLVER</button>
+        <button id="btn-volver" className="btn col-1 m-1 justify border border-3 border-dark text-light" onClick={volver => navigate("/eliminar_empresa")}>VOLVER</button>
 
       </div>
       

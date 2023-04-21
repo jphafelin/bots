@@ -27,7 +27,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getTipo_de_Eventos: async () => {
                 const store = getStore();
                 const host = process.env.BACKEND_URL;
-                const url = "https://3001-jphafelin-bots-mco146slbdg.ws-eu94.gitpod.io/api/empresa/";
+                const url = "https://3001-jphafelin-bots-twaox590bku.ws-eu95.gitpod.io/api/empresa/";
                 const requestOptions = {
                     method: "GET",
                     ContentType: "application/json",
@@ -37,7 +37,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 console.log(response)
                 if (response.ok) {
                     const data = await response.json();
-                    console.log(" Data Empresa: ", data.results);
+                    console.log(" Datos Empresas: ", data.results);
                     setStore({
                         tipo_evento: data.results,
                     });
@@ -48,7 +48,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 const host = process.env.BACKEND_URL;
 				const id_empresa = localStorage.getItem("id_empresa") 
 				//if (id_empresa != "") {
-                const url = "https://3001-jphafelin-bots-mco146slbdg.ws-eu94.gitpod.io/api/empresa/"+ id_empresa;
+                const url = "https://3001-jphafelin-bots-twaox590bku.ws-eu95.gitpod.io/api/empresa/2";
                 const requestOptions = {
                     method: "GET",
                     ContentType: "application/json",
@@ -57,7 +57,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                 console.log(response)
                 if (response.ok) {
                     const data = await response.json();
-                    console.log(" Data Administrador: ", data.results);
+                    console.log(" Datos Empresa Actual: ", data.results);
                     setStore({
                         evento: data.results,
                     });

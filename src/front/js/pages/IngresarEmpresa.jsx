@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+
 import { Context } from "../store/appContext";
 import "../../styles/botones.css"
 import { useNavigate } from "react-router-dom"
@@ -194,7 +195,7 @@ export const IngresarEmpresa = () => {
        redirect: 'follow'
      };
      const host = process.env.BACKEND_URL;
-     fetch("https://3001-jphafelin-bots-mco146slbdg.ws-eu94.gitpod.io/api/empresa", requestOptions)
+     fetch("https://3001-jphafelin-bots-twaox590bku.ws-eu95.gitpod.io/api/empresa", requestOptions)
        .then(response => response.text())
        .then(result => console.log(result))
        .catch(error => console.log('error', error));
