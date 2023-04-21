@@ -79,7 +79,7 @@ export const EliminarEmpresa = () => {
           ) : (
             myArray.map((item, key = item.id) => (
 
-              <div className="d-flex" onClick={()=>editAdmin(item.id, item.id_user)}>
+              <div key={key} className="d-flex" onClick={()=>editAdmin(item.id, item.id_user)}>
                 <div className="col-2 border border-dark"><b>{item.rut}</b></div>
                 <div className="col-8 border border-dark text-start"><b className="mx-2">{item.razon_social}</b></div>
                 <div className="col-2 border border-dark"><b>{item.estado}</b></div>

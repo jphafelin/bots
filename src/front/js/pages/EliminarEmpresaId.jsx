@@ -14,13 +14,22 @@ import { relativeTimeRounding } from "moment";
 export const EliminarEmpresaId = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-  const id_empresa = localStorage.getItem("id")
+  const id_empresa = localStorage.getItem("id_empresa")
   
-  const myArray = store.tipo_evento;
-  console.log("ESPUESTA", myArray[id_empresa])
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('https://3001-jphafelin-bots-mco146slbdg.ws-eu94.gitpod.io/api/empresa/1');
+      const jsonData = await response.json();
+      setData(jsonData);
+    };
+
+    fetchData();
+  }, []);
   
 
-
+console.log(data)
 
   const grabar = () => {
 
@@ -44,6 +53,7 @@ export const EliminarEmpresaId = () => {
 
   return (
     <div className="containter justify-content-center">
+      
       <nav className="navbar p-1">
         <div className="container-fluid row">
           <div className="col-2">
@@ -77,12 +87,12 @@ export const EliminarEmpresaId = () => {
         <div className="row">
           <div className="text-start mx-3">
             <label className="label-id">ID:</label>
-            <input className="casilla-id col bg-light rounded" maxlength="4" value="" disabled="disabled"></input>
+            <input className="casilla-id col bg-light rounded" maxLength="4" value="" disabled="disabled"></input>
             <label className="label-razon-social">RAZON SOCIAL:</label>
-            <input className=" casilla-razon-social col-6 text-uppercase rounded bg-light" maxlength="45" value="V" disabled="disabled"
+            <input className=" casilla-razon-social col-6 text-uppercase rounded bg-light" maxLength="45" value="V" disabled="disabled"
             ></input>
             <label className="label-rut">RUT:</label>
-            <input className="casilla-rut col-2 text-uppercase rounded bg-light" maxlength="12" value="V" disabled="disabled"
+            <input className="casilla-rut col-2 text-uppercase rounded bg-light" maxLength="12" value="V" disabled="disabled"
 
             ></input>
             <label className="label-estado">ESTADO:</label>
@@ -97,10 +107,10 @@ export const EliminarEmpresaId = () => {
           <div className="text-start mx-3">
 
             <label>NOMBRE FANTASIA:</label>
-            <input className="casilla-nombre-fantasia col-6 text-uppercase rounded bg-light" maxlength="40" value="V" disabled="disabled"
+            <input className="casilla-nombre-fantasia col-6 text-uppercase rounded bg-light" maxLength="40" value="V" disabled="disabled"
             ></input>
             <label className="label-giro">GIRO:</label>
-            <input className="casilla-giro col-4 text-uppercase rounded bg-light" maxlength="40" value="V" disabled="disabled"
+            <input className="casilla-giro col-4 text-uppercase rounded bg-light" maxLength="40" value="V" disabled="disabled"
             ></input>
           </div>
 
@@ -112,12 +122,12 @@ export const EliminarEmpresaId = () => {
         <div className="row my-1">
           <div className="text-start py-1 mx-3">
             <label>DIRECCION:</label>
-            <input className="casilla-direccion col-4 text-uppercase rounded bg-light" maxlength="40" value="V" disabled="disabled"
+            <input className="casilla-direccion col-4 text-uppercase rounded bg-light" maxLength="40" value="V" disabled="disabled"
             ></input>
             <label className="label-region">REGION:</label>
-            <input className="casilla-id col bg-light rounded" maxlength="4" value="V" disabled="disabled"></input>
+            <input className="casilla-id col bg-light rounded" maxLength="4" value="V" disabled="disabled"></input>
             <label className="label-comuna">COMUNA:</label>
-            <input className="casilla-comuna col-4 text-uppercase rounded bg-light" maxlength="20" value="V" disabled="disabled"
+            <input className="casilla-comuna col-4 text-uppercase rounded bg-light" maxLength="20" value="V" disabled="disabled"
             ></input>
           </div>
         </div>
@@ -129,10 +139,10 @@ export const EliminarEmpresaId = () => {
         <div className="row my-2">
           <div className="text-start mx-3">
             <label>NOMBRE:</label>
-            <input className="casilla-nombre col-4 text-uppercase rounded bg-light" maxlength="35" value="V" disabled="disabled"
+            <input className="casilla-nombre col-4 text-uppercase rounded bg-light" maxLength="35" value="V" disabled="disabled"
             ></input>
             <label className="label-telefono">TELEFONO:</label>
-            <input className="casilla-telefono col-4 text-uppercase rounded bg-light" maxlength="25" value="V" disabled="disabled"
+            <input className="casilla-telefono col-4 text-uppercase rounded bg-light" maxLength="25" value="V" disabled="disabled"
             ></input>
           </div>
 
@@ -140,10 +150,10 @@ export const EliminarEmpresaId = () => {
         <div className="row my-2">
           <div className="text-start mx-3">
             <label>EMAIL:</label>
-            <input className="casilla-email col-4 text-uppercase rounded bg-light" maxlength="42" value="V" disabled="disabled"
+            <input className="casilla-email col-4 text-uppercase rounded bg-light" maxLength="42" value="V" disabled="disabled"
             ></input>
             <label className="label-cargo">CARGO:</label>
-            <input className="casilla-cargo col-4 text-uppercase rounded bg-light" maxlength="23" value="V" disabled="disabled"
+            <input className="casilla-cargo col-4 text-uppercase rounded bg-light" maxLength="23" value="V" disabled="disabled"
             ></input>
           </div>
 
@@ -154,10 +164,10 @@ export const EliminarEmpresaId = () => {
         <div className="row my-2">
           <div className="text-start mx-3">
             <label>NOMBRE:</label>
-            <input className="casilla-nombre col-4 text-uppercase rounded bg-light" maxlength="35" value="V" disabled="disabled"
+            <input className="casilla-nombre col-4 text-uppercase rounded bg-light" maxLength="35" value="V" disabled="disabled"
             ></input>
             <label className="label-telefono">TELEFONO:</label>
-            <input className="casilla-telefono col-4 text-uppercase rounded bg-light" maxlength="25" value="V" disabled="disabled"
+            <input className="casilla-telefono col-4 text-uppercase rounded bg-light" maxLength="25" value="V" disabled="disabled"
             ></input>
           </div>
 
@@ -165,10 +175,10 @@ export const EliminarEmpresaId = () => {
         <div className="row my-2">
           <div className="text-start mx-3">
             <label>EMAIL:</label>
-            <input className="casilla-email col-4 text-uppercase rounded bg-light" maxlength="42" value="V" disabled="disabled"
+            <input className="casilla-email col-4 text-uppercase rounded bg-light" maxLength="42" value="V" disabled="disabled"
             ></input>
             <label className="label-cargo">CARGO:</label>
-            <input className="casilla-cargo col-4 text-uppercase rounded bg-light" maxlength="23" value="V" disabled="disabled"
+            <input className="casilla-cargo col-4 text-uppercase rounded bg-light" maxLength="23" value="V" disabled="disabled"
             ></input>
           </div>
 

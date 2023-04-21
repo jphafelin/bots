@@ -194,7 +194,7 @@ export const IngresarEmpresa = () => {
        redirect: 'follow'
      };
      const host = process.env.BACKEND_URL;
-     fetch("https://3001-jphafelin-bots-5bkbvrv5v9s.ws-eu94.gitpod.io/api/empresa", requestOptions)
+     fetch("https://3001-jphafelin-bots-mco146slbdg.ws-eu94.gitpod.io/api/empresa", requestOptions)
        .then(response => response.text())
        .then(result => console.log(result))
        .catch(error => console.log('error', error));
