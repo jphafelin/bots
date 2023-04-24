@@ -52,6 +52,7 @@ def empresa():
                      
                      razon_social=request_body['razon_social'],
                      rut=request_body['rut'],
+                     rut_verificador=request_body['rut_verificador'],
                      nombre_fantasia=request_body['nombre_fantasia'],
                      giro=request_body['giro'],
                      estado=request_body['estado'],

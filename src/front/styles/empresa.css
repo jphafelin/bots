@@ -38,7 +38,12 @@ body {
 }
 
 .casilla-rut {
-    width: 115px;
+    width: 95px;
+
+}
+
+.casilla-rut-verificador {
+    width: 17px;
 
 }
 

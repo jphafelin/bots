@@ -50,6 +50,7 @@ class Empresa(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     razon_social = db.Column(db.String(120), unique=True)
     rut = db.Column(db.String(80), unique=True)
+    rut_verificador = db.Column(db.String(80), unique=False)
     nombre_fantasia = db.Column(db.String(120), unique=False)
     giro = db.Column(db.String(120), unique=False)
     estado = db.Column(db.String(120), unique=False)
@@ -77,6 +78,7 @@ class Empresa(db.Model):
             "id": self.id,
             "razon_social": self.razon_social,
             "rut": self.rut,
+            "rut_verificador": self.rut_verificador,
             "nombre_fantasia": self.nombre_fantasia,
             "giro": self.giro,
             "estado": self.estado,

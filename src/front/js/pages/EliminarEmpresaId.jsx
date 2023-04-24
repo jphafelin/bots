@@ -37,7 +37,7 @@ export const EliminarEmpresaId = () => {
       redirect: 'follow'
     };
 
-    fetch("https://3001-jphafelin-bots-4vnpaal1fna.ws-eu95.gitpod.io/api/empresa/"+ id_empresa, requestOptions)
+    fetch("https://3001-jphafelin-bots-8ldo44emw7c.ws-eu95.gitpod.io/api/empresa/"+ id_empresa, requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
@@ -91,9 +91,9 @@ export const EliminarEmpresaId = () => {
             <input className=" casilla-razon-social col-6 text-uppercase rounded bg-light" maxLength="45" value={myArray.razon_social} disabled="disabled"
             ></input>
             <label className="label-rut">RUT:</label>
-            <input className="casilla-rut col-2 text-uppercase rounded bg-light" maxLength="12" value={myArray.rut} disabled="disabled"
-
-            ></input>
+            <input className="casilla-rut col-2 text-uppercase rounded bg-light" maxLength="12" value={myArray.rut} disabled="disabled"></input>
+            -
+            <input className="casilla-rut-verificador col-2 text-uppercase rounded bg-light" maxLength="12" value={myArray.rut} disabled="disabled"></input>
             <label className="label-estado">ESTADO:</label>
             <input className="casilla-rut col-2 text-uppercase rounded bg-light" value={myArray.estado} disabled="disabled">
 
@@ -182,6 +182,33 @@ export const EliminarEmpresaId = () => {
           </div>
 
         </div>
+        <div className="border-top border-bottom border-dark border-3 justify-content-center banda">
+          <b>DATOS REGISTRO</b>
+        </div>
+        <div className="row my-2">
+          <div className="text-start mx-3">
+            <label>USUARIO CREADOR:</label>
+            <input className="casilla-nombre col-4 text-uppercase rounded bg-light" maxLength="35" value={myArray.nombre_contacto_cobranza} disabled="disabled"
+            ></input>
+            <label className="label-telefono">FECHA CREACION:</label>
+            <input className="casilla-telefono col-4 text-uppercase rounded bg-light" maxLength="25" value={myArray.telefono_contacto_cobranza} disabled="disabled"
+            ></input>
+          </div>
+
+        </div>
+        <div className="row my-2">
+          <div className="text-start mx-3">
+            <label>USUAIO ULTIMA MODIF.:</label>
+            <input className="casilla-email col-4 text-uppercase rounded bg-light" maxLength="42" value={myArray.email_contacto_cobranza} disabled="disabled"
+            ></input>
+            <label className="label-cargo">FECHA ULT. MODIF.:</label>
+            <input className="casilla-cargo col-4 text-uppercase rounded bg-light" maxLength="23" value={myArray.cargo_contacto_cobranza} disabled="disabled"
+            ></input>
+          </div>
+
+        </div>
+
+        
 
 
 

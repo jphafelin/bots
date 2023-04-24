@@ -32,6 +32,7 @@ export const IngresarEmpresa = () => {
   const [value12, setValue12] = useState("");
   const [value13, setValue13] = useState("");
   const [value14, setValue14] = useState("");
+  const [value15, setValue15] = useState("");
   const [selectedOption, setSelectedOption] = useState("VIGENTE");
   const [selectedOption2, setSelectedOption2] = useState("01");
 
@@ -59,6 +60,13 @@ export const IngresarEmpresa = () => {
       setValue2(event.target.value.replace(";", ""));
     } else {
       setValue2(event.target.value);
+      const valuerut = event.target.value.replace(/\D/g, '');
+      const formattedValue = parseInt(valuerut).toLocaleString('es-AR');
+      if (isNaN(parseInt(valuerut))) {
+        setValue2('');
+      } else {
+        setValue2(formattedValue);
+      }
     }
   }
   function handleChange3(event) {
@@ -157,6 +165,14 @@ export const IngresarEmpresa = () => {
       setValue14(event.target.value);
     }
   }
+  function handleChange15(event) {
+    if (event.target.value.indexOf(";") !== -1) {
+      alert("El carácter ';' no está permitido en este campo.");
+      setValue15(event.target.value.replace(";", ""));
+    } else {
+      setValue15(event.target.value);
+    }
+  }
   function handleKeyPress(event) {
     if (event.key === ";") {
       event.preventDefault();
@@ -170,6 +186,7 @@ export const IngresarEmpresa = () => {
      
      "razon_social": value.toUpperCase(),
      "rut": value2.toUpperCase(),
+     "rut_verificador": value15.toUpperCase(),
      "estado": selectedOption,
      "nombre_fantasia": value3.toUpperCase(),
      "giro": value4.toUpperCase(),
@@ -195,7 +212,7 @@ export const IngresarEmpresa = () => {
        redirect: 'follow'
      };
      const host = process.env.BACKEND_URL;
-     fetch("https://3001-jphafelin-bots-4vnpaal1fna.ws-eu95.gitpod.io/api/empresa", requestOptions)
+     fetch("https://3001-jphafelin-bots-8ldo44emw7c.ws-eu95.gitpod.io/api/empresa", requestOptions)
        .then(response => response.text())
        .then(result => console.log(result))
        .catch(error => console.log('error', error));
@@ -258,8 +275,12 @@ export const IngresarEmpresa = () => {
       onChange={handleChange}
       onKeyPress={handleKeyPress}></input>
             <label className="label-rut">RUT:</label>
-            <input className="casilla-rut col-2 text-uppercase rounded" maxlength="12" value={value2}
+            <input className="casilla-rut col-2 text-uppercase rounded" maxlength="10" value={value2}
       onChange={handleChange2}
+      onKeyPress={handleKeyPress}></input>
+      -
+      <input className="casilla-rut-verificador col-2 text-uppercase rounded" maxlength="1" value={value15}
+      onChange={handleChange15}
       onKeyPress={handleKeyPress}></input>
             <label className="label-estado">ESTADO:</label>
             <select className="col bg-primary text-light rounded" onChange={handleSelect}>
