@@ -36,10 +36,10 @@ export const ConsultarEmpresaId = () => {
             </Link>
           </div>
           <div className="col-8 text-center justify-content-start ">
-            <h3>ELIMINAR EMPRESA ACTUAL</h3>
+            <h3>CONSULTAR EMPRESA ACTUAL</h3>
           </div>
           <div className="col-2 text-end">
-            <p>X04-I1</p>
+            <p>X04-C2</p>
             <div>
               <button id="cerrar-sesion" className="text-light btn border border-3 border-dark">CERRAR SESION</button>
               <button id="ayuda" className="mx-2 btn border border-3 border-dark">?</button>
@@ -153,6 +153,32 @@ export const ConsultarEmpresaId = () => {
             ></input>
             <label className="label-cargo">CARGO:</label>
             <input className="casilla-cargo col-4 text-uppercase rounded bg-light" maxLength="23" value={myArray.cargo_contacto_cobranza} disabled="disabled"
+            ></input>
+          </div>
+          
+
+        </div>
+        <div className="border-top border-bottom border-dark border-3 justify-content-center banda">
+          <b>DATOS REGISTRO</b>
+        </div>
+        <div className="row my-2">
+          <div className="text-start mx-3">
+            <label>USUARIO CREADOR:</label>
+            <input className="casilla-nombre col-4 text-uppercase rounded bg-light" maxLength="35" value={myArray.id_usuario_master_creador} disabled="disabled"
+            ></input>
+            <label className="label-telefono">FECHA CREACION:</label>
+            <input className="casilla-telefono col-4 text-uppercase rounded bg-light" maxLength="25" value={myArray.fecha_y_hora_creacion} disabled="disabled"
+            ></input>
+          </div>
+
+        </div>
+        <div className="row my-2">
+          <div className="text-start mx-3">
+            <label>USUARIO ULTIMA MODIF.:</label>
+            <input className="casilla-email col-4 text-uppercase rounded bg-light" maxLength="42" value={myArray.id_usuario_master_modificador} disabled="disabled"
+            ></input>
+            <label className="label-cargo">FECHA ULT. MODIF.:</label>
+            <input className="casilla-cargo col-4 text-uppercase rounded bg-light" maxLength="23" value={myArray.fecha_y_hora_modificacion} disabled="disabled"
             ></input>
           </div>
 

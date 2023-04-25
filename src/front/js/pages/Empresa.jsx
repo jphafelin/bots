@@ -25,10 +25,10 @@ export const Empresa = () => {
             </Link>
           </div>
           <div className="col-8 text-center justify-content-start ">
-            <h3>EMPRESA</h3>
+            <h3>MENU EMPRESA</h3>
           </div>
           <div className="col-2 text-end">
-            <p>X04-I1</p>
+            <p>X04-01</p>
             <div>
               <button id="cerrar-sesion" className="text-light btn border border-3 border-dark">CERRAR SESION</button>
               <button id="ayuda" className="mx-2 btn border border-3 border-dark">?</button>

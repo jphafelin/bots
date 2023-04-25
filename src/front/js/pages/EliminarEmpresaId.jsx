@@ -22,12 +22,17 @@ export const EliminarEmpresaId = () => {
  
 
   const grabar = () => {
+    var moment = require('moment');
+ 
+	// obtener el nombre del mes, día del mes, año, hora
+	  var now = moment().format("DD/MM/YYYY HH:mm");
 
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     var raw = JSON.stringify({
-      "estado": "NO VIGENTE"
+      "estado": "NO VIGENTE",
+      "fecha_y_hora_modificacion": now
     });
 
     var requestOptions = {
@@ -64,7 +69,7 @@ export const EliminarEmpresaId = () => {
             <h3>ELIMINAR EMPRESA ACTUAL</h3>
           </div>
           <div className="col-2 text-end">
-            <p>X04-I1</p>
+            <p>X04-E2</p>
             <div>
               <button id="cerrar-sesion" className="text-light btn border border-3 border-dark">CERRAR SESION</button>
               <button id="ayuda" className="mx-2 btn border border-3 border-dark">?</button>
@@ -188,21 +193,21 @@ export const EliminarEmpresaId = () => {
         <div className="row my-2">
           <div className="text-start mx-3">
             <label>USUARIO CREADOR:</label>
-            <input className="casilla-nombre col-4 text-uppercase rounded bg-light" maxLength="35" value={myArray.nombre_contacto_cobranza} disabled="disabled"
+            <input className="casilla-nombre col-4 text-uppercase rounded bg-light" maxLength="35" value={myArray.id_usuario_master_creador} disabled="disabled"
             ></input>
             <label className="label-telefono">FECHA CREACION:</label>
-            <input className="casilla-telefono col-4 text-uppercase rounded bg-light" maxLength="25" value={myArray.telefono_contacto_cobranza} disabled="disabled"
+            <input className="casilla-telefono col-4 text-uppercase rounded bg-light" maxLength="25" value={myArray.fecha_y_hora_creacion} disabled="disabled"
             ></input>
           </div>
 
         </div>
         <div className="row my-2">
           <div className="text-start mx-3">
-            <label>USUAIO ULTIMA MODIF.:</label>
-            <input className="casilla-email col-4 text-uppercase rounded bg-light" maxLength="42" value={myArray.email_contacto_cobranza} disabled="disabled"
+            <label>USUARIO ULTIMA MODIF.:</label>
+            <input className="casilla-email col-4 text-uppercase rounded bg-light" maxLength="42" value={myArray.id_usuario_master_modificador} disabled="disabled"
             ></input>
             <label className="label-cargo">FECHA ULT. MODIF.:</label>
-            <input className="casilla-cargo col-4 text-uppercase rounded bg-light" maxLength="23" value={myArray.cargo_contacto_cobranza} disabled="disabled"
+            <input className="casilla-cargo col-4 text-uppercase rounded bg-light" maxLength="23" value={myArray.fecha_y_hora_modificacion} disabled="disabled"
             ></input>
           </div>
 

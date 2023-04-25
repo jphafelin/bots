@@ -66,7 +66,12 @@ def empresa():
                      nombre_contacto_cobranza=request_body['nombre_contacto_cobranza'],
                      telefono_contacto_cobranza=request_body['telefono_contacto_cobranza'],
                      email_contacto_cobranza=request_body['email_contacto_cobranza'],
-                     cargo_contacto_cobranza=request_body['cargo_contacto_cobranza'] 
+                     cargo_contacto_cobranza=request_body['cargo_contacto_cobranza'],
+                     id_usuario_master_creador=request_body['id_usuario_master_creador'],
+                     fecha_y_hora_creacion=request_body['fecha_y_hora_creacion'],
+                     id_usuario_master_modificador=request_body['id_usuario_master_modificador'],
+                     fecha_y_hora_modificacion=request_body['fecha_y_hora_modificacion'],
+
                      
                      
                     )
@@ -98,6 +103,7 @@ def update_empresa(client_id):
         return 'Not found', 404
     
     client.estado = request.json.get('estado', client.estado)
+    client.fecha_y_hora_modificacion = request.json.get('fecha_y_hora_modificacion', client.fecha_y_hora_modificacion)
     
     db.session.commit()
 

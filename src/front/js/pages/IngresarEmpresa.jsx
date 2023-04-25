@@ -15,6 +15,8 @@ import { relativeTimeRounding } from "moment";
 export const IngresarEmpresa = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
+
+  
  
   
 
@@ -179,6 +181,10 @@ export const IngresarEmpresa = () => {
     }
   }
   const grabar = () =>{
+    var moment = require('moment');
+ 
+	// obtener el nombre del mes, día del mes, año, hora
+	  var now = moment().format("DD/MM/YYYY HH:mm");
     var myHeaders = new Headers();
      myHeaders.append("Content-Type", "application/json");
 
@@ -201,6 +207,10 @@ export const IngresarEmpresa = () => {
      "telefono_contacto_cobranza": value12.toUpperCase(),
      "email_contacto_cobranza": value13.toUpperCase(),
      "cargo_contacto_cobranza": value14.toUpperCase(),
+     "id_usuario_master_creador": "1 FALTA FUNCION",
+     "fecha_y_hora_creacion": now,
+     "id_usuario_master_modificador": "1 FALTA FUNCION",
+     "fecha_y_hora_modificacion": now,
      
 
      });

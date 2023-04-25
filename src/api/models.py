@@ -65,6 +65,10 @@ class Empresa(db.Model):
     telefono_contacto_cobranza = db.Column(db.String(80), nullable=False)
     email_contacto_cobranza = db.Column(db.String(120), unique=True, nullable=False)
     cargo_contacto_cobranza = db.Column(db.String(120), unique=False)
+    id_usuario_master_creador = db.Column(db.Integer, unique=False)
+    fecha_y_hora_creacion = db.Column(db.String(120), unique=False)
+    id_usuario_master_modificador = db.Column(db.Integer, unique=False)
+    fecha_y_hora_modificacion = db.Column(db.String(120), unique=False)
 
   
     
@@ -93,6 +97,10 @@ class Empresa(db.Model):
             "telefono_contacto_cobranza": self.telefono_contacto_cobranza,
             "email_contacto_cobranza": self.email_contacto_cobranza,
             "cargo_contacto_cobranza": self.cargo_contacto_cobranza,
+            "id_usuario_master_creador": self.id_usuario_master_creador,
+            "fecha_y_hora_creacion": self.fecha_y_hora_creacion,
+            "id_usuario_master_modificador": self.id_usuario_master_creador,
+            "fecha_y_hora_modificacion": self.fecha_y_hora_modificacion,
             
             # do not serialize the password, its a security breach
         }

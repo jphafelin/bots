@@ -29,7 +29,7 @@ export const ModificarEmpresa = () => {
     setTimeout(() => {
       location.reload();
       
-    }, 1)
+    },1 )
     
     return navigate("/modificar_empresa/1");
 }
@@ -44,10 +44,10 @@ export const ModificarEmpresa = () => {
             </Link>
           </div>
           <div className="col-8 text-center justify-content-start ">
-            <h3>ELIMINAR EMPRESA</h3>
+            <h3>MODIFICAR EMPRESA</h3>
           </div>
           <div className="col-2 text-end">
-            <p>X04-I1</p>
+            <p>X04-M1</p>
             <div>
               <button id="cerrar-sesion" className="text-light btn border border-3 border-dark">CERRAR SESION</button>
               <button id="ayuda" className="mx-2 btn border border-3 border-dark">?</button>
@@ -94,11 +94,12 @@ export const ModificarEmpresa = () => {
     const searchRegex = new RegExp(searchTerm, 'i');
     const searchRegex2 = new RegExp(searchTerm2, 'i');
     const searchRegex3 = new RegExp(searchTerm3, 'i');
-    return searchRegex.test(item.rut) && searchRegex2.test(item.razon_social) && searchRegex3.test(item.estado);
+    const rut_completo = item.rut +"-"+ item.rut_verificador;
+    return searchRegex.test(rut_completo) && searchRegex2.test(item.razon_social) && searchRegex3.test(item.estado);
   })
   .map((item, key = item.id) => (
     <div key={key} className="d-flex" onClick={()=>editAdmin(item.id)}>
-      <div className="col-2 border border-dark"><b>{item.rut}</b></div>
+      <div className="col-2 border border-dark"><b>{item.rut}-{item.rut_verificador}</b></div>
       <div className="col-8 border border-dark text-start"><b className="mx-2">{item.razon_social}</b></div>
       <div className="col-2 border border-dark"><b>{item.estado}</b></div>
     </div>
