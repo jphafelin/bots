@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { useHistory } from 'react-router-use-history'
 import { Context } from "../store/appContext";
 import "../../styles/login.css"
 import { Link } from "react-router-dom";
@@ -13,11 +14,24 @@ import "../../styles/home.css";
 export const IngresarUsuarioYContrasena = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const token = localStorage.getItem("token");
+  const history = useHistory();
 
+  const handleClick = () => {
+
+    actions.login(username, password);
+
+  }; 
+  if (store.token && store.token != "" && store.token != undefined) history.push("/menu");
+  
 
   return (
+    
    
-<div className="containter justify-content-center">
+  <div className="containter justify-content-center">
+  
       <nav className="navbar p-1">
 			<div className="container-fluid row">
 				<div className="col-2">
@@ -44,16 +58,16 @@ export const IngresarUsuarioYContrasena = () => {
           <h5 className="bg-primary col-10 justify border border-3 border-dark text-light rounded">USUARIO</h5>
         </div>
         <div className="row justify-content-center mb-3">
-          <input type="text" className="border border-3 border-dark col-10 text-uppercase rounded"></input>
+          <input type="text" className="border border-3 border-dark col-10 text-uppercase rounded" value={username} onChange={(e) => setUsername(e.target.value)}></input>
         </div>
         <div className="row justify-content-center mb-2">
           <h5 className="bg-primary col-10 justify border border-3 border-dark text-light rounded">CONTRASEÑA</h5>
         </div>
         <div className="row justify-content-center mb-3">
-          <input type="password" className="border border-3 border-dark col-10 rounded"></input>
+          <input type="password" className="border border-3 border-dark col-10 rounded" value={password} onChange={(e) => setPassword(e.target.value)}></input>
         </div>
         <div className="row justify-content-center">
-          <button id="btn-ingresar" className="border border-3 border-dark col-10 text-light rounded"> <h5>INGRESAR</h5></button>
+          <button id="btn-ingresar" className="border border-3 border-dark col-10 text-light rounded" onClick={handleClick}> <h5>INGRESAR</h5></button>
         </div>
 
 

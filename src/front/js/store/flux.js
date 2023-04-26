@@ -4,6 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: null,
 			tipo_evento: [],
 			evento: [],
+			token: null,
 			
 		},
 		actions: {
@@ -11,6 +12,45 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+
+			syncTokenFromLocalStorage: () => {
+				const token = localStorage.getItem("token");
+				if(token && token != "" && token != undefined) setStore({ token: token })
+			}, 
+
+			login: async(username, password) => {
+				const opts = {
+					method: 'POST',
+					headers: {
+					  "Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+					  "username":username,
+					  "password": password
+					})
+				  }
+			  
+			try{
+				  const resp = await fetch("https://3001-jphafelin-bots-dt0imnzcy8x.ws-eu95.gitpod.io/api/token", opts)
+				  if (resp.status !== 200){
+
+				   alert ("There has been some error");
+				return false; 
+				}
+				
+				const data = await resp.json();
+				localStorage.setItem("token", data.access_token)
+				setStore({ token: data.access_token })
+				return true;
+			}
+
+			catch(error){
+				console.error("There has been an error login in")
+			}
+					
+					
+			},
+
 
 			getMessage: async () => {
 				try{
