@@ -19,6 +19,8 @@ export const EliminarEmpresaId = () => {
   
   const myArray = store.evento;
   
+  const host = process.env.BACKEND_URL;
+  
  
 
   const grabar = () => {
@@ -42,7 +44,7 @@ export const EliminarEmpresaId = () => {
       redirect: 'follow'
     };
 
-    fetch("https://3001-jphafelin-bots-8ldo44emw7c.ws-eu95.gitpod.io/api/empresa/"+ id_empresa, requestOptions)
+    fetch(host +"/api/empresa/"+ id_empresa, requestOptions)
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));

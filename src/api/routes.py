@@ -20,8 +20,6 @@ def create_token():
         return jsonify({"msg": "Bad username or password"}), 401
 
     access_token = create_access_token(identity=username)
-    username = get_jwt_identity()
-    console.log(username)
     return jsonify(access_token=access_token)
 
 
@@ -94,6 +92,7 @@ def empresa():
                      
                      
                     )
+                    
          db.session.add(empresa)
          db.session.commit()
          return jsonify(request_body), 200

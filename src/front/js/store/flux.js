@@ -1,3 +1,7 @@
+
+const host = process.env.BACKEND_URL;
+
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -31,7 +35,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				  }
 			  
 			try{
-				  const resp = await fetch("https://3001-jphafelin-bots-dt0imnzcy8x.ws-eu95.gitpod.io/api/token", opts)
+				  const resp = await fetch(host +"/api/token", opts)
 				  if (resp.status !== 200){
 
 				   alert ("There has been some error");
@@ -55,7 +59,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getMessage: async () => {
 				try{
 					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
+					const resp = await fetch(host + "/api/hello")
 					const data = await resp.json()
 					setStore({ message: data.message })
 					// don't forget to return something, that is how the async resolves
@@ -66,8 +70,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getTipo_de_Eventos: async () => {
                 const store = getStore();
-                const host = process.env.BACKEND_URL;
-                const url = "https://3001-jphafelin-bots-8ldo44emw7c.ws-eu95.gitpod.io/api/empresa/";
+                
+                const url = host +"/api/empresa/";
                 const requestOptions = {
                     method: "GET",
                     ContentType: "application/json",
@@ -86,8 +90,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getEvento: async () => {
 				
                 const store = getStore();
-                const host = process.env.BACKEND_URL;
-                const url = "https://3001-jphafelin-bots-8ldo44emw7c.ws-eu95.gitpod.io/api/empresa/"+ localStorage.getItem("id_empresa");
+                
+                const url = host +"/api/empresa/"+ localStorage.getItem("id_empresa");
                 const requestOptions = {
                     method: "GET",
                     ContentType: "application/json",

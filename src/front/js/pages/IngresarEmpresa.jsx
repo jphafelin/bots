@@ -15,8 +15,10 @@ import { relativeTimeRounding } from "moment";
 export const IngresarEmpresa = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-
   
+  const host = process.env.BACKEND_URL;
+
+
  
   
 
@@ -207,9 +209,9 @@ export const IngresarEmpresa = () => {
      "telefono_contacto_cobranza": value12.toUpperCase(),
      "email_contacto_cobranza": value13.toUpperCase(),
      "cargo_contacto_cobranza": value14.toUpperCase(),
-     "id_usuario_master_creador": "1 FALTA FUNCION",
+     "id_usuario_master_creador": 1,
      "fecha_y_hora_creacion": now,
-     "id_usuario_master_modificador": "1 FALTA FUNCION",
+     "id_usuario_master_modificador": 1,
      "fecha_y_hora_modificacion": now,
      
 
@@ -221,12 +223,16 @@ export const IngresarEmpresa = () => {
        body: raw,
        redirect: 'follow'
      };
-     const host = process.env.BACKEND_URL;
-     fetch("https://3001-jphafelin-bots-8ldo44emw7c.ws-eu95.gitpod.io/api/empresa", requestOptions)
-       .then(response => response.text())
+     
+   
+     console.log("HOST:", host);
+     const url = host+ "/api/empresa";
+     console.log("URL",url);
+     fetch(url, requestOptions)
+       .then(response => response.json())
        .then(result => console.log(result))
        .catch(error => console.log('error', error));
-
+       
        alert("Empresa Creada")
        navigate("/empresa")
        
