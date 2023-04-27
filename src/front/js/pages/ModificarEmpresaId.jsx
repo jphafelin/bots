@@ -15,29 +15,33 @@ import { relativeTimeRounding } from "moment";
 export const ModificarEmpresaId = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-  const myArray = store.evento;
+  const id_empresa = localStorage.getItem("id_empresa")
+  
+  const tipo = store.tipo_evento[id_empresa-1];
+  console.log("SSSSSSSSSSSSSSSSs", tipo.rut);
 
   
  
   
 
-  const [value, setValue] = useState("");
-  const [value2, setValue2] = useState("");
-  const [value3, setValue3] = useState("");
-  const [value4, setValue4] = useState("");
-  const [value5, setValue5] = useState("");
-  const [value6, setValue6] = useState("");
-  const [value7, setValue7] = useState("");
-  const [value8, setValue8] = useState("");
-  const [value9, setValue9] = useState("");
-  const [value10, setValue10] = useState("");
-  const [value11, setValue11] = useState("");
-  const [value12, setValue12] = useState("");
-  const [value13, setValue13] = useState("");
-  const [value14, setValue14] = useState("");
-  const [value15, setValue15] = useState("");
-  const [selectedOption, setSelectedOption] = useState("VIGENTE");
-  const [selectedOption2, setSelectedOption2] = useState("01");
+  const [value, setValue] = useState(tipo.razon_social);
+  const [value2, setValue2] = useState(tipo.rut);
+  const [value3, setValue3] = useState(tipo.nombre_fantasia);
+  const [value4, setValue4] = useState(tipo.giro);
+  const [value5, setValue5] = useState(tipo.direccion_facturacion);
+  const [value6, setValue6] = useState(tipo.comuna);
+  const [value7, setValue7] = useState(tipo.nombre_contacto_facturacion);
+  const [value8, setValue8] = useState(tipo.telefono_contacto_facturacion);
+  const [value9, setValue9] = useState(tipo.email_contacto_facturacion);
+  const [value10, setValue10] = useState(tipo.cargo_contacto_facturacion);
+  const [value11, setValue11] = useState(tipo.nombre_contacto_cobranza);
+  const [value12, setValue12] = useState(tipo.telefono_contacto_cobranza);
+  const [value13, setValue13] = useState(tipo.email_contacto_cobranza);
+  const [value14, setValue14] = useState(tipo.cargo_contacto_cobranza);
+  const [value15, setValue15] = useState(tipo.rut_verificador);
+  const [selectedOption, setSelectedOption] = useState(tipo.estado); //OJO AQUÍ
+  const [selectedOption2, setSelectedOption2] = useState(tipo.region);
+  const [value16, setValue16] = useState(tipo.id);
 
 
 
@@ -280,7 +284,7 @@ export const ModificarEmpresaId = () => {
         <div className="row">
           <div className="text-start mx-3">
             <label className="label-id">ID:</label>
-            <input className="casilla-id col bg-light rounded" maxlength="4" value="" disabled="disabled"></input>
+            <input className="casilla-id col bg-light rounded" maxlength="4" value={value16} disabled="disabled"></input>
             <label className="label-razon-social">RAZON SOCIAL:</label>
             <input className=" casilla-razon-social col-6 text-uppercase rounded" maxlength="45" value={value}
       onChange={handleChange}

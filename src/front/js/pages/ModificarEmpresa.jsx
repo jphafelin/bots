@@ -26,10 +26,10 @@ export const ModificarEmpresa = () => {
     
     localStorage.setItem("id_empresa", key)
     
-    setTimeout(() => {
-      location.reload();
+    //setTimeout(() => {
+    //  location.reload();
       
-    },1 )
+    //},1 )
     
     return navigate("/modificar_empresa/1");
 }

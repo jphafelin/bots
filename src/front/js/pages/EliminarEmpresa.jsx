@@ -26,10 +26,10 @@ export const EliminarEmpresa = () => {
     
     localStorage.setItem("id_empresa", key)
     
-    setTimeout(() => {
-      location.reload();
+    //setTimeout(() => {
+     // location.reload();
       
-    }, 1)
+    //}, 1)
     
     return navigate("/eliminar_empresa/1");
 }
