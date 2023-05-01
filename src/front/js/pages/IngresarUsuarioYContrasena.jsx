@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/login.css"
 import { Link } from "react-router-dom";
@@ -17,14 +17,14 @@ export const IngresarUsuarioYContrasena = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const token = localStorage.getItem("token");
-  const history = useHistory();
+  //const history = useHistory();
 
   const handleClick = () => {
 
     actions.login(username, password);
 
   }; 
-  if (store.token && store.token != "" && store.token != undefined) history.push("/menu");
+  //if (store.token && store.token != "" && store.token != undefined) history.push("/menu");
   
 
   return (
