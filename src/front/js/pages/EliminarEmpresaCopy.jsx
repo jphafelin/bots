@@ -1,93 +1,52 @@
-import React, { useContext, useState } from "react";
-import { Context } from "../store/appContext";
-import "../../styles/botones.css";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import logo from "../../img/LogoNewOffice.jpeg";
-import "../../styles/navbar.css";
-import Papa from "papaparse";
+import React, { useState, useEffect } from 'react';
 
 export const EliminarEmpresaCopy = () => {
-  
   const [data, setData] = useState([]);
-  const [columnArray, setColumn] = useState([]);
-  const [values, setValues] = useState([]);
 
-  const handleFile = (event) => {
-    
-    Papa.parse(event.target.files[0], {
-      
-      header: true,
-      skipEmptyLines: true,
-      delimiter: ";",
-      complete: function(result) {
-        const filteredData = result.data.map((d) => {
-          return {
-            C03_tx_emp: d.C03_tx_emp,
-            C02_tx_emp: d.C02_tx_emp,
-            C06_tx_emp: d.C06_tx_emp
-          };
-        });
-        const columnArray = Object.keys(filteredData[0]);
-        const valuesArray = filteredData.map((d) => Object.values(d));
-        setData(filteredData);
-        setColumn(columnArray);
-        setValues(valuesArray);
-        
+  useEffect(() => {
+    async function fetchCsv() {
+      const response = await fetch('https://8080-jphafelin-bots-0qv6r8hpr95.ws-eu96b.gitpod.io/tx_emp.csv');
+      const text = await response.text();
+      const rows = text.split('\n');
+      const headers = rows[0].split(';');
+      const result = [];
+      for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].split(';');
+        if (cells.length !== headers.length) continue;
+        const row = {};
+        for (let j = 0; j < cells.length; j++) {
+          row[headers[j]] = cells[j];
+        }
+        result.push(row);
       }
-    });
-  };
+      setData(result);
+      console.log("RESULT", result[0].C02_tx_emp
+      );
+    }
+    fetchCsv();
+  }, []);
 
   return (
-    <div className="containter justify-content-center">
-      <nav className="navbar p-1">
-        <div className="container-fluid row">
-          <div className="col-2">
-            <Link to="/menu">
-              <img src={logo} height="60px"></img>
-            </Link>
-          </div>
-          <div className="col-8 text-center justify-content-start ">
-            <h3>ELIMINAR EMPRESA</h3>
-          </div>
-          <div className="col-2 text-end">
-            <p>X04-E1</p>
-            <div>
-              <button id="cerrar-sesion" className="text-light btn border border-3 border-dark">CERRAR SESION</button>
-              <button id="ayuda" className="mx-2 btn border border-3 border-dark">?</button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <div>
-        <input 
-          type="file"
-          name="file"
-          accept=".csv"
-          style={{display:"block", margin:"10px auto"}}
-          onChange={handleFile}>
-        </input>
-        
-        <table style={{borderCollapse:"collapse", border:"1px solid black", margin:"5px auto"}}>
-          <thead>
-            <tr>
-              {columnArray.map((col, i)=> (
-                <th key={i}>{col}</th>
-              ))}
+    <div>
+      <table>
+        <thead>
+          <tr>
+            <th>Columna 1</th>
+            <th>Columna 2</th>
+            <th>Columna 3</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row, i) => (
+            <tr key={i}>
+              <td>{row['Columna 1']}</td>
+              <td>{row['Columna 2']}</td>
+              <td>{row['Columna 3']}</td>
             </tr>
-          </thead>
-          <tbody>
-            {values.map((v, i)=> (
-              <tr key={i}>
-                {v.map((value, i)=> (
-                  <td key={i}>{value}</td>
-                ))}
-              </tr>
-            ))}      
-          </tbody>
-        </table>
-      </div>
+            
+          ))}
+        </tbody>
+      </table>
     </div>
   );
-};
+}
