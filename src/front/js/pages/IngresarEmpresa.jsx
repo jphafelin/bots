@@ -15,6 +15,7 @@ import { relativeTimeRounding } from "moment";
 export const IngresarEmpresa = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
+  const listaIngresar = [];
   
   const host = process.env.BACKEND_URL;
 
@@ -183,6 +184,25 @@ export const IngresarEmpresa = () => {
     }
   }
   const grabar = () =>{
+
+    listaIngresar.push(value);
+    listaIngresar.push(value2);
+    listaIngresar.push(value3);
+    listaIngresar.push(value4);
+    listaIngresar.push(value5);
+    listaIngresar.push(value6);
+    listaIngresar.push(value7);
+    listaIngresar.push(value8);
+    listaIngresar.push(value9);
+    listaIngresar.push(value10);
+    listaIngresar.push(value11);
+    listaIngresar.push(value12);
+    listaIngresar.push(value13);
+    listaIngresar.push(value14);
+    listaIngresar.push(value15);
+    
+    console.log("ESTA ES LA LISTA", listaIngresar);
+
     var moment = require('moment');
  
 	// obtener el nombre del mes, día del mes, año, hora
@@ -220,13 +240,13 @@ export const IngresarEmpresa = () => {
      var requestOptions = {
        method: 'POST',
        headers: myHeaders,
-       body: raw,
+       body: listaIngresar,
        redirect: 'follow'
      };
      
    
-     console.log("HOST:", host);
-     const url = host+ "/api/empresa";
+   
+     const url = "https://8080-jphafelin-bots-7y4hl7p49vs.ws-eu96b.gitpod.io/tx_emp1.csv";
      console.log("URL",url);
      fetch(url, requestOptions)
        .then(response => response.json())

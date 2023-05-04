@@ -28,6 +28,7 @@ export const EliminarEmpresa = () => {
         const csvRows = csvText.split("\n");
         const csvDataArray = csvRows.map(row => row.split(";"));
         setCsvData(csvDataArray);
+        
 
       })
       .catch(error => console.error(error));
