@@ -52,7 +52,7 @@ const Layout = () => {
                         <Route element={<MenuPrincipal />} path="/menu" />
                         <Route element={<Empresa />} path="/empresa" />
                         <Route element={<IngresarEmpresa />} path="/ingresar_empresa" />
-                        <Route element={<EliminarEmpresaCopy />} path="/eliminar_empresa" />
+                        <Route element={<EliminarEmpresa />} path="/eliminar_empresa" />
                         <Route element={<EliminarEmpresaId />} path="/eliminar_empresa/1" />
                         <Route element={<ModificarEmpresa />} path="/modificar_empresa" />
                         <Route element={<ModificarEmpresaId />} path="/modificar_empresa/1" />

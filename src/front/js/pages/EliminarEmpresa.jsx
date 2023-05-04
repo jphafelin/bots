@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Context } from "../store/appContext";
+import React, { useState, useEffect } from "react";
+
 import "../../styles/botones.css"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom";
@@ -11,28 +11,43 @@ import { relativeTimeRounding } from "moment";
 
 
 export const EliminarEmpresa = () => {
-  const { store, actions } = useContext(Context);
+
   const navigate = useNavigate();
-  const myArray = store.tipo_evento;
+
 
   const [searchTerm, setSearchTerm] = useState('');
   const [searchTerm2, setSearchTerm2] = useState('');
   const [searchTerm3, setSearchTerm3] = useState('');
 
+  const [csvData, setCsvData] = useState([]);
+
+  useEffect(() => {
+    fetch("https://8080-jphafelin-bots-7y4hl7p49vs.ws-eu96b.gitpod.io/tx_emp.csv")
+      .then(response => response.text())
+      .then(csvText => {
+        const csvRows = csvText.split("\n");
+        const csvDataArray = csvRows.map(row => row.split(";"));
+        setCsvData(csvDataArray);
+
+      })
+      .catch(error => console.error(error));
+  }, []);
+
 
 
   function editAdmin(key, user) {
     console.log(key)
-    
+
     localStorage.setItem("id_empresa", key)
-    
+
     //setTimeout(() => {
-     // location.reload();
-      
+    // location.reload();
+
     //}, 1)
-    
+
     return navigate("/eliminar_empresa/1");
-}
+  }
+
 
   return (
     <div className="containter justify-content-center">
@@ -60,7 +75,7 @@ export const EliminarEmpresa = () => {
 
       <div id="eliminar-titulo" className="justify-content-center text-light text-center border border-dark border-2 border-top-0">E L I M I N A R</div>
       <div>
-      <button id="btn-volver" className="btn col-1 m-1 justify border border-3 border-dark text-light" onClick={volver => navigate("/empresa")}>VOLVER</button>
+        <button id="btn-volver" className="btn col-1 m-1 justify border border-3 border-dark text-light" onClick={volver => navigate("/empresa")}>VOLVER</button>
       </div>
 
       <div id="formulario" className="col-9 text-center border border-3 border-dark border-top-0 bg-light">
@@ -77,35 +92,35 @@ export const EliminarEmpresa = () => {
         </div>
 
 
-        <div className="d-flex">
+        {/* <div className="d-flex">
           
         <input className="col-2" type="text" value={searchTerm.toUpperCase()} onChange={e => setSearchTerm(e.target.value)} />
         <input className="col-8" type="text" value={searchTerm2.toUpperCase()} onChange={e => setSearchTerm2(e.target.value)} />
         <input className="col-2" type="text" value={searchTerm3.toUpperCase()} onChange={e => setSearchTerm3(e.target.value)} />
-        </div>
+        </div>*/}
+        <div className="d-flex">
+  <input className="col-2" type="text" value={searchTerm.toUpperCase()} onChange={e => setSearchTerm(e.target.value)} />
+  <input className="col-8" type="text" value={searchTerm2.toUpperCase()} onChange={e => setSearchTerm2(e.target.value)} />
+  <input className="col-2" type="text" value={searchTerm3.toUpperCase()} onChange={e => setSearchTerm3(e.target.value)} />
+</div>
 
-
-        <div className="eleccion">
-          {myArray.length === 0 ? (
-            <h1><span className="spam_no">No element in Array</span></h1>
-          ) : (
-            myArray
-  .filter(item => {
-    const searchRegex = new RegExp(searchTerm, 'i');
-    const searchRegex2 = new RegExp(searchTerm2, 'i');
-    const searchRegex3 = new RegExp(searchTerm3, 'i');
-    const rut_completo = item.rut +"-"+ item.rut_verificador;
-    return searchRegex.test(rut_completo) && searchRegex2.test(item.razon_social) && searchRegex3.test(item.estado);
-  })
-  .map((item, key = item.id) => (
-    <div key={key} className="d-flex" onClick={()=>editAdmin(item.id)}>
-      <div className="col-2 border border-dark"><b>{item.rut}-{item.rut_verificador}</b></div>
-      <div className="col-8 border border-dark text-start"><b className="mx-2">{item.razon_social}</b></div>
-      <div className="col-2 border border-dark"><b>{item.estado}</b></div>
+<div className="eleccion">
+  {csvData.slice(1, -1).filter(row => {
+    if (searchTerm === "" && searchTerm2 === "" && searchTerm3 === "") {
+      return row;
+    } else if (row[2].toUpperCase().includes(searchTerm.toUpperCase()) && 
+               row[1].toUpperCase().includes(searchTerm2.toUpperCase()) && 
+               row[5].toUpperCase().includes(searchTerm3.toUpperCase())) {
+      return row;
+    }
+  }).map((row, index) => (
+    <div className="d-flex" key={index} onClick={() => editAdmin(row[0], row[1])}>
+      <div className="col-2 border border-dark"><b>{row[2]}</b></div>
+      <div className="col-8 border border-dark text-start"><b className="mx-2">{row[1]}</b></div>
+      <div className="col-2 border border-dark"><b>{row[5]}</b></div>
     </div>
-  ))
-          )}
-        </div>
+  ))}
+</div>
       </div>
 
 
