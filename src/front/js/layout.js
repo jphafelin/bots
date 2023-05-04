@@ -11,7 +11,7 @@ import { CambiarContrasena } from "./pages/CambiarContrasena.jsx";
 import { MenuPrincipal } from "./pages/MenuPrincipal.jsx";
 import { Empresa } from "./pages/Empresa.jsx";
 import { Usuario } from "./pages/Usuario.jsx";
-import { Bots } from "./pages/Bots.jsx";
+
 import { IngresarEmpresa } from "./pages/IngresarEmpresa.jsx";
 import { EliminarEmpresa } from "./pages/EliminarEmpresa.jsx";
 import { EliminarEmpresaCopy } from "./pages/EliminarEmpresaCopy.jsx";
@@ -59,7 +59,7 @@ const Layout = () => {
                         <Route element={<ConsultarEmpresa />} path="/consultar_empresa" />
                         <Route element={<ConsultarEmpresaId />} path="/consultar_empresa/1" />
                         <Route element={<Usuario />} path="/usuario" />
-                        <Route element={<Bots />} path="/bots" />
+                        
 
                         <Route element={<Demo />} path="/demo" />
                         <Route element={<Single />} path="/single/:theid" />
