@@ -9,6 +9,8 @@ import "../../styles/navbar.css"
 import rigoImageUrl from "../../img/Logo.jpg";
 import Papa from 'papaparse';
 import { relativeTimeRounding } from "moment";
+import axios from 'axios';
+
 
 
 
@@ -16,8 +18,30 @@ export const IngresarEmpresa = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
   const listaIngresar = [];
+  const [csvData, setCsvData] = useState([]);
+  const [id, setId] = useState("");
+
+
+  useEffect(() => {
+    fetch("https://8080-jphafelin-bots-9ha6n20g8vs.ws-eu96b.gitpod.io/tx_emp.csv")
+      .then(response => response.text())
+      .then(csvText => {
+        const csvRows = csvText.split("\n");
+        const csvDataArray = csvRows.map(row => row.split(";"));
+        setCsvData(csvDataArray);
+        console.log("ESTE", csvDataArray.length);
+        setId(csvDataArray.length-1);
+        
+        
+        
+        
+
+      })
+      .catch(error => console.error(error));
+  }, []);
+
   
-  const host = process.env.BACKEND_URL;
+
 
 
  
@@ -185,73 +209,58 @@ export const IngresarEmpresa = () => {
   }
   const grabar = () =>{
 
-    listaIngresar.push(value);
-    listaIngresar.push(value2);
-    listaIngresar.push(value3);
-    listaIngresar.push(value4);
-    listaIngresar.push(value5);
-    listaIngresar.push(value6);
-    listaIngresar.push(value7);
-    listaIngresar.push(value8);
-    listaIngresar.push(value9);
-    listaIngresar.push(value10);
-    listaIngresar.push(value11);
-    listaIngresar.push(value12);
-    listaIngresar.push(value13);
-    listaIngresar.push(value14);
-    listaIngresar.push(value15);
-    
-    console.log("ESTA ES LA LISTA", listaIngresar);
-
     var moment = require('moment');
  
 	// obtener el nombre del mes, día del mes, año, hora
 	  var now = moment().format("DD/MM/YYYY HH:mm");
-    var myHeaders = new Headers();
-     myHeaders.append("Content-Type", "application/json");
 
-     var raw = JSON.stringify({
+    listaIngresar.push(id.toString());
+    listaIngresar.push(value.toUpperCase());
+    listaIngresar.push(value2.toUpperCase());
+    listaIngresar.push(value3.toUpperCase());
+    listaIngresar.push(value4.toUpperCase());
+    listaIngresar.push(value5.toUpperCase());
+    listaIngresar.push(value6.toUpperCase());
+    listaIngresar.push(value7.toUpperCase());
+    listaIngresar.push(value8.toUpperCase());
+    listaIngresar.push(value9.toUpperCase());
+    listaIngresar.push(value10.toUpperCase());
+    listaIngresar.push(value11.toUpperCase());
+    listaIngresar.push(value12.toUpperCase());
+    listaIngresar.push(value13.toUpperCase());
+    listaIngresar.push(value14.toUpperCase());
+    listaIngresar.push(value15.toUpperCase());
+    listaIngresar.push("1");
+    listaIngresar.push(now.toUpperCase());
+    listaIngresar.push("1");
+    listaIngresar.push(now.toUpperCase());
+    listaIngresar.push(selectedOption.toUpperCase());
+    listaIngresar.push(selectedOption2.toUpperCase());
+
+    
+    console.log("ESTA ES LA LISTA", listaIngresar);
+
+    
+    
+    const datosCSV3 = listaIngresar.join(';') + '\n';
+    axios.post('https://8080-jphafelin-bots-9ha6n20g8vs.ws-eu96b.gitpod.io/tx_emp.csv', datosCSV3)
+      .then(response => {
+        console.log(response);
+        // Actualizar el estado del componente si es necesario
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    
      
-     "razon_social": value.toUpperCase(),
-     "rut": value2.toUpperCase(),
-     "rut_verificador": value15.toUpperCase(),
-     "estado": selectedOption,
-     "nombre_fantasia": value3.toUpperCase(),
-     "giro": value4.toUpperCase(),
-     "direccion_facturacion": value5.toUpperCase(),
-     "region": selectedOption2,
-     "comuna": value6.toUpperCase(),
-     "nombre_contacto_facturacion": value7.toUpperCase(),
-     "telefono_contacto_facturacion": value8.toUpperCase(),
-     "email_contacto_facturacion": value9.toUpperCase(),
-     "cargo_contacto_facturacion": value10.toUpperCase(),
-     "nombre_contacto_cobranza": value11.toUpperCase(),
-     "telefono_contacto_cobranza": value12.toUpperCase(),
-     "email_contacto_cobranza": value13.toUpperCase(),
-     "cargo_contacto_cobranza": value14.toUpperCase(),
-     "id_usuario_master_creador": 1,
-     "fecha_y_hora_creacion": now,
-     "id_usuario_master_modificador": 1,
-     "fecha_y_hora_modificacion": now,
+
      
 
-     });
-
-     var requestOptions = {
-       method: 'POST',
-       headers: myHeaders,
-       body: listaIngresar,
-       redirect: 'follow'
-     };
+ 
      
    
    
-     const url = "https://8080-jphafelin-bots-7y4hl7p49vs.ws-eu96b.gitpod.io/tx_emp1.csv";
-     console.log("URL",url);
-     fetch(url, requestOptions)
-       .then(response => response.json())
-       .then(result => console.log(result))
-       .catch(error => console.log('error', error));
+
        
        alert("Empresa Creada")
        navigate("/empresa")
@@ -305,7 +314,7 @@ export const IngresarEmpresa = () => {
         <div className="row">
           <div className="text-start mx-3">
             <label className="label-id">ID:</label>
-            <input className="casilla-id col bg-light rounded" maxlength="4" value="" disabled="disabled"></input>
+            <input className="casilla-id col bg-light rounded" maxlength="4" value={id} disabled="disabled"></input>
             <label className="label-razon-social">RAZON SOCIAL:</label>
             <input className=" casilla-razon-social col-6 text-uppercase rounded" maxlength="45" value={value}
       onChange={handleChange}

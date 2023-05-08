@@ -12,11 +12,13 @@ import { relativeTimeRounding } from "moment";
 
 
 export const EliminarEmpresaId = () => {
+  const navigate = useNavigate();
+  const id_empresa = localStorage.getItem("id_empresa")
   const [csvData, setCsvData] = useState([]);
   const lista = []
 
   useEffect(() => {
-    fetch("https://8080-jphafelin-bots-7y4hl7p49vs.ws-eu96b.gitpod.io/tx_emp1.csv")
+    fetch("https://8080-jphafelin-bots-9ha6n20g8vs.ws-eu96b.gitpod.io/tx_emp.csv")
       .then(response => response.text())
       .then(csvText => {
         const csvRows = csvText.split("\n");
@@ -28,10 +30,10 @@ export const EliminarEmpresaId = () => {
   }, []);
   
   for (let i = 0; i < csvData.length; i++) {
-    for (let j = 0; j < csvData[i].length; j++) {
+    for (let j = 0; j < csvData.length; j++) {
       // Aquí se puede trabajar con csvData[i][j]
       lista.push(csvData[localStorage.getItem("id_empresa")][[j]]);
-      console.log(csvData[localStorage.getItem("id_empresa")][j]);
+      //console.log(csvData[localStorage.getItem("id_empresa")][j]);
 
 
   
@@ -39,16 +41,14 @@ export const EliminarEmpresaId = () => {
     }
   }
  
-  console.log(lista);
+  console.log("ESTADO",lista[5]);
   
-
-
-  const navigate = useNavigate();
-  const id_empresa = localStorage.getItem("id_empresa")
   
 
   
-  const host = process.env.BACKEND_URL;
+  
+
+
   
  
 

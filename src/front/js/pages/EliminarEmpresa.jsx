@@ -22,12 +22,16 @@ export const EliminarEmpresa = () => {
   const [csvData, setCsvData] = useState([]);
 
   useEffect(() => {
-    fetch("https://8080-jphafelin-bots-7y4hl7p49vs.ws-eu96b.gitpod.io/tx_emp.csv")
+    fetch("https://8080-jphafelin-bots-9ha6n20g8vs.ws-eu96b.gitpod.io/tx_emp.csv")
       .then(response => response.text())
       .then(csvText => {
         const csvRows = csvText.split("\n");
         const csvDataArray = csvRows.map(row => row.split(";"));
         setCsvData(csvDataArray);
+        console.log("ESTE", csvDataArray);
+        
+        
+        
         
 
       })
@@ -35,6 +39,7 @@ export const EliminarEmpresa = () => {
   }, []);
 
 
+  
 
   function editAdmin(key, user) {
     console.log(key)
