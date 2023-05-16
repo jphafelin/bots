@@ -9,6 +9,8 @@ from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 
+import csv
+
 api = Blueprint('api', __name__)
 
 
@@ -27,12 +29,25 @@ def create_token():
 @api.route('/user', methods=['GET', 'POST'])
 def user():
     if request.method == "GET":
+
+        with open('/workspace/bots/src/front/js/pages/tx_emp1.csv', 'r', newline='') as csvfile:
+    
+            csvreader = csv.reader(csvfile, delimiter=';')
+            lista = []
+            for fila in csvreader:
+                lista.append(fila)
+
+            csvfile.close()
+
+        print(lista)
+
         users = User.query.all()
         results = [user.serialize() for user in users]
+        #results = lista
         response_body = {"message": "ok",
                         "results": results,
                         "Total_records": len(results)}
-        return response_body, 200
+        return lista, 200
     
     elif request.method == "POST":
          

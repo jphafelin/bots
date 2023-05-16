@@ -18,19 +18,20 @@ export const EliminarEmpresaId = () => {
   const lista = []
 
   useEffect(() => {
-    fetch("https://8080-jphafelin-bots-9ha6n20g8vs.ws-eu96b.gitpod.io/tx_emp.csv")
-      .then(response => response.text())
-      .then(csvText => {
-        const csvRows = csvText.split("\n");
-        const csvDataArray = csvRows.map(row => row.split(";"));
-        setCsvData(csvDataArray);
-
-      })
-      .catch(error => console.error(error));
+    var requestOptions = {
+      method: 'GET',
+      redirect: 'follow'
+    };
+    
+    fetch("https://3001-jphafelin-bots-4n5iqce0jkk.ws-eu97.gitpod.io/api/user", requestOptions)
+      .then(response => response.json())
+      .then((datos) => {
+        return setCsvData(datos);
+      });
   }, []);
   
-  for (let i = 0; i < csvData.length; i++) {
-    for (let j = 0; j < csvData.length; j++) {
+  for (let i = 0; i < (csvData.length)/10; i++) {
+    for (let j = 0; j < 22; j++) {
       // Aquí se puede trabajar con csvData[i][j]
       lista.push(csvData[localStorage.getItem("id_empresa")][[j]]);
       //console.log(csvData[localStorage.getItem("id_empresa")][j]);
@@ -41,10 +42,13 @@ export const EliminarEmpresaId = () => {
     }
   }
  
-  console.log("ESTADO",lista[5]);
+  console.log(lista);
+
+  
   
   
 
+  
   
   
 
@@ -57,28 +61,31 @@ export const EliminarEmpresaId = () => {
  
 	// obtener el nombre del mes, día del mes, año, hora
 	  var now = moment().format("DD/MM/YYYY HH:mm");
+    console.log(now);
+    console.log(csvData[localStorage.getItem("id_empresa")][6]);
+    csvData[localStorage.getItem("id_empresa")][6] = "NO VIGENTE"; 
+    console.log(csvData[localStorage.getItem("id_empresa")][6]);
+    console.log(csvData[localStorage.getItem("id_empresa")][21]);
+    csvData[localStorage.getItem("id_empresa")][21] = now; 
+    console.log(csvData[localStorage.getItem("id_empresa")][21]);
 
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    // CSV
 
-    var raw = JSON.stringify({
-      "estado": "NO VIGENTE",
-      "fecha_y_hora_modificacion": now
-    });
-
-    var requestOptions = {
-      method: 'PUT',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    };
-
-    fetch(host +"/api/empresa/"+ id_empresa, requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+  const csv = Papa.unparse(csvData);
+   
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.setAttribute('href', url);
+  link.setAttribute('download', 'tx_emp1.csv');
+  link.style.visibility = 'hidden';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+    
+    //console.log(csvData);
     alert("Empresa " + id_empresa + " Eliminada")
-    navigate("/empresa")
+    //navigate("/empresa")
     
     location.reload();
 
@@ -259,6 +266,7 @@ export const EliminarEmpresaId = () => {
         <div className="text-end">
 
           <button id="btn-grabar" className="col-1 justify border border-3 border-dark btn" onClick={grabar}><b>ELIMINAR</b></button>
+          
 
         </div>
       </div>

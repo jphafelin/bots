@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-
-import "../../styles/botones.css"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom";
 import logo from "../../img/LogoNewOffice.jpeg";
 import "../../styles/navbar.css"
-import { relativeTimeRounding } from "moment";
+import "../../styles/botones.css"
+
 
 
 
@@ -21,35 +20,24 @@ export const EliminarEmpresa = () => {
 
   const [csvData, setCsvData] = useState([]);
 
-  useEffect(() => {
-    fetch("https://8080-jphafelin-bots-9ha6n20g8vs.ws-eu96b.gitpod.io/tx_emp.csv")
-      .then(response => response.text())
-      .then(csvText => {
-        const csvRows = csvText.split("\n");
-        const csvDataArray = csvRows.map(row => row.split(";"));
-        setCsvData(csvDataArray);
-        console.log("ESTE", csvDataArray);
-        
-        
-        
-        
 
-      })
-      .catch(error => console.error(error));
-  }, []);
+  var requestOptions = {
+    method: 'GET',
+    redirect: 'follow'
+  };
 
-
-  
+  fetch("https://3001-jphafelin-bots-4n5iqce0jkk.ws-eu97.gitpod.io/api/user", requestOptions)
+    .then(response => response.json())
+    .then((datos) => {
+      return setCsvData(datos);
+    });
 
   function editAdmin(key, user) {
     console.log(key)
 
     localStorage.setItem("id_empresa", key)
 
-    //setTimeout(() => {
-    // location.reload();
 
-    //}, 1)
 
     return navigate("/eliminar_empresa/1");
   }
@@ -98,44 +86,36 @@ export const EliminarEmpresa = () => {
         </div>
 
 
-        {/* <div className="d-flex">
-          
-        <input className="col-2" type="text" value={searchTerm.toUpperCase()} onChange={e => setSearchTerm(e.target.value)} />
-        <input className="col-8" type="text" value={searchTerm2.toUpperCase()} onChange={e => setSearchTerm2(e.target.value)} />
-        <input className="col-2" type="text" value={searchTerm3.toUpperCase()} onChange={e => setSearchTerm3(e.target.value)} />
-        </div>*/}
-        <div className="d-flex">
-  <input className="col-2" type="text" value={searchTerm.toUpperCase()} onChange={e => setSearchTerm(e.target.value)} />
-  <input className="col-8" type="text" value={searchTerm2.toUpperCase()} onChange={e => setSearchTerm2(e.target.value)} />
-  <input className="col-2" type="text" value={searchTerm3.toUpperCase()} onChange={e => setSearchTerm3(e.target.value)} />
-</div>
 
-<div className="eleccion">
-  {csvData.slice(1, -1).filter(row => {
-    if (searchTerm === "" && searchTerm2 === "" && searchTerm3 === "") {
-      return row;
-    } else if (row[2].toUpperCase().includes(searchTerm.toUpperCase()) && 
-               row[1].toUpperCase().includes(searchTerm2.toUpperCase()) && 
-               row[5].toUpperCase().includes(searchTerm3.toUpperCase())) {
-      return row;
-    }
-  }).map((row, index) => (
-    <div className="d-flex" key={index} onClick={() => editAdmin(row[0], row[1])}>
-      <div className="col-2 border border-dark"><b>{row[2]}</b></div>
-      <div className="col-8 border border-dark text-start"><b className="mx-2">{row[1]}</b></div>
-      <div className="col-2 border border-dark"><b>{row[5]}</b></div>
-    </div>
-  ))}
-</div>
+        <div className="d-flex">
+          <input className="col-2" type="text" value={searchTerm.toUpperCase()} onChange={e => setSearchTerm(e.target.value)} />
+          <input className="col-8" type="text" value={searchTerm2.toUpperCase()} onChange={e => setSearchTerm2(e.target.value)} />
+          <input className="col-2" type="text" value={searchTerm3.toUpperCase()} onChange={e => setSearchTerm3(e.target.value)} />
+        </div>
+
+        <div className="eleccion">
+          {csvData.slice(1).filter(row => {
+            if (searchTerm === "" && searchTerm2 === "" && searchTerm3 === "") {
+              return row;
+            } else if ((row[2] + "-" + row[3]).toUpperCase().includes(searchTerm.toUpperCase()) &&
+              row[1].toUpperCase().includes(searchTerm2.toUpperCase()) &&
+              row[6].toUpperCase().includes(searchTerm3.toUpperCase())) {
+              return row;
+            }
+          }).map((row, index) => (
+            <div className="d-flex" key={index} onClick={() => editAdmin(row[0], row[1])}>
+              <div className="col-2 border border-dark"><b>{row[2] + "-" + row[3]}</b></div>
+              <div className="col-8 border border-dark text-start"><b className="mx-2">{row[1]}</b></div>
+              <div className="col-2 border border-dark"><b>{row[6]}</b></div>
+            </div>
+          ))}
+        </div>
       </div>
 
 
       <div className="row justify-content-center m-3">
 
       </div>
-
-
-
 
     </div>
   );

@@ -23,18 +23,13 @@ export const IngresarEmpresa = () => {
 
 
   useEffect(() => {
-    fetch("https://8080-jphafelin-bots-9ha6n20g8vs.ws-eu96b.gitpod.io/tx_emp.csv")
+    fetch("https://8080-jphafelin-bots-4n5iqce0jkk.ws-eu96b.gitpod.io/tx_emp_prueba.csv")
       .then(response => response.text())
       .then(csvText => {
         const csvRows = csvText.split("\n");
-        const csvDataArray = csvRows.map(row => row.split(";"));
-        setCsvData(csvDataArray);
-        console.log("ESTE", csvDataArray.length);
+        const csvDataArray = csvRows.map(row => row.split(","));
         setId(csvDataArray.length-1);
-        
-        
-        
-        
+        setCsvData(csvDataArray);
 
       })
       .catch(error => console.error(error));
@@ -240,19 +235,24 @@ export const IngresarEmpresa = () => {
     
     console.log("ESTA ES LA LISTA", listaIngresar);
 
+    setCsvData(listaIngresar);
+
+    console.log("NUEVA LISTA", csvData);
+
     
-    
-    const datosCSV3 = listaIngresar.join(';') + '\n';
-    axios.post('https://8080-jphafelin-bots-9ha6n20g8vs.ws-eu96b.gitpod.io/tx_emp.csv', datosCSV3)
-      .then(response => {
-        console.log(response);
-        // Actualizar el estado del componente si es necesario
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    
-     
+
+  const csv = Papa.unparse(csvData); // Convierte el array a CSV
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" }); // Crea un objeto Blob
+  const url = URL.createObjectURL(blob); // Crea una URL para descargar el archivo
+
+  // Crea un enlace y lo simula para descargar el archivo
+  const link = document.createElement("a");
+  link.setAttribute("href", url);
+  link.setAttribute("download", "data.csv");
+  document.body.appendChild(link);
+  //link.click();
+  document.body.removeChild(link);
+  console.log("HECHO")
 
      
 
@@ -262,10 +262,10 @@ export const IngresarEmpresa = () => {
    
 
        
-       alert("Empresa Creada")
-       navigate("/empresa")
+       //alert("Empresa Creada")
+       //navigate("/empresa")
        
-       location.reload();
+       //location.reload();
       
 
      
@@ -459,8 +459,11 @@ export const IngresarEmpresa = () => {
       <div className="text-end">
 
         <button id="btn-grabar" className="col-1 justify border border-3 border-dark btn" onClick={grabar}><b>GRABAR</b></button>
-
+     
       </div>
+      
+      
+      
       </div>
 
 
